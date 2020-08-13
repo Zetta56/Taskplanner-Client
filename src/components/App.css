@@ -1,0 +1,19 @@
+body {
+	background-color: aliceblue;
+}
+
+.item {
+	font-size: 18px;
+}
+
+#userForm .eight.wide.column {
+	margin: 50px auto;
+}
+
+#userForm h2 {
+	text-align: center;
+}
+
+#userForm #submitButton {
+	width: 100%;
+}
