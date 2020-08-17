@@ -2,18 +2,39 @@ body {
 	background-color: aliceblue;
 }
 
-.item {
+#mainContainer {
+	padding-top: 3.6rem;
+}
+
+#errorMessage {
+	text-align: center;
+}
+
+#header .item {
 	font-size: 18px;
 }
 
+#userForm {
+	margin: 80px auto;
+}
+
 #userForm .eight.wide.column {
-	margin: 50px auto;
+	background-color: white;
+	margin: 0 auto;
+	padding: 30px 1rem;
 }
 
 #userForm h2 {
 	text-align: center;
 }
 
-#userForm #submitButton {
-	width: 100%;
+#userForm .field {
+	font-size: 16px;
+	margin: 10px auto;
+	width: 90%;
+}
+
+#userForm .ui.button.primary {
+	margin: 0 5%;
+	width: 90%;
 }
