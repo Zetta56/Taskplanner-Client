@@ -14,6 +14,20 @@ export const resetError = () => {
 	};
 };
 
+export const selectAccordion = (index) => {
+	return {
+		type: "SELECT_ACCORDION",
+		payload: index
+	};
+};
+
+export const deselectAccordion = (index) => {
+	return {
+		type: "DESELECT_ACCORDION",
+		payload: index
+	};
+};
+
 export const createUser = (formValues) => {
 	return async (dispatch) => {
 		const response = await express.post("/register", formValues);
@@ -21,21 +35,10 @@ export const createUser = (formValues) => {
 		if(response.data.message) {
 			return dispatch(error(response.data.message));
 		};
-		
-		await dispatch({
-			type: "CREATE_USER",
-			payload: response.data
-		});
 
-		await dispatch(login({username: formValues.username, password: formValues.password}))
+		dispatch(login({username: formValues.username, password: formValues.password}))
 
 		history.push("/");
-	};
-};
-
-export const initialLogout = (userId) => {
-	return {
-		type: "LOGOUT"
 	};
 };
 
@@ -53,7 +56,7 @@ export const login = (formValues) => {
 				return dispatch(error(response.data.message));
 			};
 			
-			await dispatch({
+			dispatch({
 				type: "LOGIN",
 				payload: response.data
 			});
@@ -70,5 +73,79 @@ export const logout = () => {
 		dispatch({
 			type: "LOGOUT",
 		});
+	};
+};
+
+export const fetchTasks = () => {
+	return async (dispatch) => {
+		const response = await express.get("/tasks");
+
+		dispatch({
+			type: "FETCH_TASKS",
+			payload: response.data
+		});
+	};
+};
+
+export const createTask = (formValues) => {
+	return async (dispatch) => {
+		const response = await express.post("/tasks/new", formValues);
+		
+		if(response.data.message) {
+			return dispatch(error(response.data.message));
+		};
+
+		dispatch({
+			type: "CREATE_TASK",
+			payload: response.data
+		});
+
+		history.push("/");
+	};
+};
+
+export const fetchTask = (taskId) => {
+	return async (dispatch) => {
+		const response = await express.get(`/tasks/${taskId}`);
+
+		if(response.data.message) {
+			dispatch(error(response.data.message));
+			return history.push("/")
+		};
+
+		dispatch({
+			type: "FETCH_TASK",
+			payload: response.data
+		});
+	};
+};
+
+export const updateTask = (formValues, taskId) => {
+	return async (dispatch) => {
+		const response = await express.put(`/tasks/${taskId}`, formValues);
+		console.log(response)
+		if(response.data.message) {
+			return dispatch(error(response.data.message));
+		};
+
+		dispatch({
+			type: "UPDATE_TASK",
+			payload: response.data
+		});
+
+		history.push("/");
+	};
+};
+
+export const deleteTask = (taskId) => {
+	return async (dispatch) => {
+		const response = await express.delete(`/tasks/${taskId}`);
+		
+		dispatch({
+			type: "DELETE_TASK",
+			payload: response.data
+		});
+
+		history.push("/");
 	};
 };

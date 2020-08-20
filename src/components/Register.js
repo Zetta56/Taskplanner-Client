@@ -39,7 +39,7 @@ class Register extends React.Component {
 				<div className="eight wide column">
 					<form className="ui form" onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
 						<h2>Create Your Account</h2>
-						<Field name="email" component={this.renderInput} placeholder="Email" type="text" />
+						<Field name="email" component={this.renderInput} placeholder="Email" inputType="text" />
 						<Field name="username" component={this.renderInput} placeholder="Username" inputType="text" />
 						<Field name="password" component={this.renderInput} placeholder="Password" inputType="password" />
 						<Field name="confirmPassword" component={this.renderInput} placeholder="Confirm Password" inputType="password" />
@@ -92,9 +92,9 @@ const mapStateToProps = (state) => {
 	return {users: state.users};
 };
 
-const reduxWrapped = reduxForm({
+const formWrapped = reduxForm({
 	form: "Register",
 	validate: validate
 })(Register);
 
-export default connect(mapStateToProps, {createUser})(reduxWrapped);
+export default connect(mapStateToProps, {createUser})(formWrapped);

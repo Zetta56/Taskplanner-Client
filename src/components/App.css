@@ -2,6 +2,11 @@ body {
 	background-color: aliceblue;
 }
 
+#taskList .icons,
+#taskList .date {
+	float: right;
+}
+
 #mainContainer {
 	padding-top: 3.6rem;
 }
@@ -37,4 +42,56 @@ body {
 #userForm .ui.button.primary {
 	margin: 0 5%;
 	width: 90%;
+}
+
+#taskList {
+	margin-top: 20px;
+}
+
+#taskList .ui.styled.accordion {
+	font-size: 20px;
+	margin-top: 20px;
+	width: 100%;
+}
+
+#taskList .title {
+	padding: 26px 0px 26px 40px;
+}
+
+#taskList .content {
+	background-color: rgb(245, 245, 245);
+	padding: 20px 40px;
+}
+
+#taskList .date {
+	padding-right: 40px;
+}
+
+.icons {
+	direction: rtl;
+	display: none;
+	height: 72px;
+	margin-top: -26px;
+	width: 110px;
+}
+
+.icons .ui.button {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0;
+	height: 100%;
+	margin: 0;
+	padding: 15px 10px;
+	width: 55px;
+}
+
+.icons .ui.button .icon {
+	font-size: 18px;
+	margin: 0 !important;
+}
+
+.title:hover .icons,
+.title:hover .ui.button {
+	display: flex;
 }

@@ -1,12 +1,14 @@
 import {combineReducers} from "redux";
 import {reducer as FormReducer} from "redux-form";
 import ErrorReducer from "./ErrorReducer";
-import UserReducer from "./UserReducer";
+import TaskReducer from "./TaskReducer";
 import AuthReducer from "./AuthReducer";
+import AccordionReducer from "./AccordionReducer";
 
 export default combineReducers({
 	form: FormReducer,
 	error: ErrorReducer,
-	users: UserReducer,
-	auth: AuthReducer
+	auth: AuthReducer,
+	tasks: TaskReducer,
+	accordion: AccordionReducer
 });
