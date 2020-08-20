@@ -55,7 +55,9 @@ body {
 }
 
 #taskList .title {
-	padding: 26px 0px 26px 40px;
+	padding: 25px 0px 25px 40px;
+	position: relative;
+    overflow: hidden;
 }
 
 #taskList .content {
@@ -64,34 +66,36 @@ body {
 }
 
 #taskList .date {
-	padding-right: 40px;
+	position: absolute;
+	right: 0;
+	margin-right: 40px;
+	transition: 500ms;
 }
 
 .icons {
-	direction: rtl;
-	display: none;
-	height: 72px;
-	margin-top: -26px;
-	width: 110px;
+	position: absolute;
+    right: -125px;
+    width: 130px;
+    height: 72px;
+    margin-top: -25px;
+    transition: 500ms;
 }
 
 .icons .ui.button {
-	display: none;
-	justify-content: center;
-	align-items: center;
 	border-radius: 0;
-	height: 100%;
 	margin: 0;
-	padding: 15px 10px;
-	width: 55px;
+	padding: 27px 20px;
 }
 
 .icons .ui.button .icon {
-	font-size: 18px;
+	font-size: 20px;
 	margin: 0 !important;
 }
 
-.title:hover .icons,
-.title:hover .ui.button {
-	display: flex;
+.title:hover .date {
+    right: 122px !important;
+}
+
+.title:hover .icons {
+    right: -3px !important;
 }

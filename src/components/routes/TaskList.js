@@ -28,11 +28,11 @@ class TaskList extends React.Component {
 				<React.Fragment key={task._id}>
 					<div className={`title ${active}`} onClick={() => this.onTitleClick(index)}>
 						<div className="icons" onClick={(e) => e.stopPropagation()}>
-							<Link to={`/tasks/${task._id}/delete`} className="ui red button">
-								<i className="trash icon" />
-							</Link>
 							<Link to={`/tasks/${task._id}/edit`} className="ui blue button">
 								<i className="pencil icon" />
+							</Link>
+							<Link to={`/tasks/${task._id}/delete`} className="ui red button">
+								<i className="trash icon" />
 							</Link>
 						</div>
 						<span className="date">{moment(task.date).format("MMM DD, YYYY")}</span>
