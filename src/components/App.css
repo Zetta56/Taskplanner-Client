@@ -2,11 +2,6 @@ body {
 	background-color: aliceblue;
 }
 
-#taskList .icons,
-#taskList .date {
-	float: right;
-}
-
 #mainContainer {
 	padding-top: 3.6rem;
 }
@@ -17,6 +12,7 @@ body {
 
 #header .item {
 	font-size: 18px;
+	outline: 0;
 }
 
 #userForm {
@@ -26,38 +22,34 @@ body {
 #userForm .eight.wide.column {
 	background-color: white;
 	margin: 0 auto;
-	padding: 30px 1rem;
+	padding: 30px 16px;
 }
 
 #userForm h2 {
 	text-align: center;
 }
 
-#userForm .field {
-	font-size: 16px;
-	margin: 10px auto;
-	width: 90%;
-}
-
+#userForm .field,
 #userForm .ui.button.primary {
-	margin: 0 5%;
+	font-size: 16px;
+	margin: 10px 5%;
 	width: 90%;
 }
 
-#taskList {
+#taskList,
+#taskList .ui.styled.accordion {
 	margin-top: 20px;
 }
 
 #taskList .ui.styled.accordion {
 	font-size: 20px;
-	margin-top: 20px;
 	width: 100%;
 }
 
 #taskList .title {
+	line-height: 1.2;
 	padding: 25px 0px 25px 40px;
 	position: relative;
-    overflow: hidden;
 }
 
 #taskList .content {
@@ -65,37 +57,72 @@ body {
 	padding: 20px 40px;
 }
 
+#taskList .name {
+	display: inline-block;
+}
+
 #taskList .date {
 	position: absolute;
 	right: 0;
 	margin-right: 40px;
-	transition: 500ms;
+	transition: 200ms;
 }
 
-.icons {
-	position: absolute;
-    right: -125px;
-    width: 130px;
-    height: 72px;
+#taskList .react-datepicker__input-container input {
+	border: 1px solid rgba(34,36,38,.15);
+	border-radius: .3rem;
+	margin-top: -12px;
+	outline: 0;
+	padding: .6em .8em;
+	width: 140px;
+}
+
+#taskList .icons {
+	direction: rtl;
+	float: right;
+    height: 74px;
     margin-top: -25px;
-    transition: 500ms;
+    width: 130px;
 }
 
-.icons .ui.button {
+#taskList .icons .ui.button {
 	border-radius: 0;
 	margin: 0;
-	padding: 27px 20px;
+	padding: 28px 0;
+	width: 0;
+	transition: 200ms;
 }
 
-.icons .ui.button .icon {
+#taskList .icons .ui.button .icon {
 	font-size: 20px;
 	margin: 0 !important;
+	opacity: 0;
 }
 
-.title:hover .date {
+/* Overriding Semantic UI Styles */
+
+.icons .ui.yellow.button:not(:hover) {
+	background-color: #fbbd08 !important;
+}
+
+.icons .ui.green.button:not(:hover) {
+	background-color: #21ba45 !important;
+}
+
+/* Pseudo-Selectors */
+
+#taskList .title:hover .date {
     right: 122px !important;
 }
 
-.title:hover .icons {
-    right: -3px !important;
+#taskList .title:hover .icons > .ui.button {
+    width: 65px !important;
+}
+
+#taskList .title:hover .icons > .ui.button > .icon {
+    opacity: 1 !important;
+}
+
+#taskList .react-datepicker__input-container input:focus {
+	border-color: #85b7d9 !important;
 }

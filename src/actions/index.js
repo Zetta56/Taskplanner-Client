@@ -123,7 +123,7 @@ export const fetchTask = (taskId) => {
 export const updateTask = (formValues, taskId) => {
 	return async (dispatch) => {
 		const response = await express.put(`/tasks/${taskId}`, formValues);
-		console.log(response)
+		
 		if(response.data.message) {
 			return dispatch(error(response.data.message));
 		};

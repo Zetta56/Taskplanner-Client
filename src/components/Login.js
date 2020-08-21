@@ -24,7 +24,6 @@ class Login extends React.Component {
 						<h2>Login</h2>
 						<Field name="username" component={this.renderInput} placeholder="Username" inputType="text" />
 						<Field name="password" component={this.renderInput} placeholder="Password" inputType="password" />
-						<br />
 						<button className="ui primary button" id="submitButton">Submit</button>
 					</form>
 				</div>

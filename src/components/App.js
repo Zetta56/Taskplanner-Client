@@ -8,11 +8,9 @@ import Header from "./Header";
 import Register from "./Register";
 import Login from "./Login";
 import TaskList from "./routes/TaskList";
-import TaskCreate from "./routes/TaskCreate";
-import TaskEdit from "./routes/TaskEdit";
 import TaskDelete from "./routes/TaskDelete";
 import "./App.css";
-
+//Will add react draggable
 class App extends React.Component {
 	componentDidMount() {
 		history.listen(async (location) => {
@@ -52,8 +50,6 @@ class App extends React.Component {
 					<div className="ui container">
 						<Switch>
 							<Route path="/" exact component={TaskList}></Route>
-							<Route path="/tasks/new" exact component={TaskCreate}></Route>
-							<Route path="/tasks/:id/edit" exact component={TaskEdit}></Route>
 							<Route path="/tasks/:id/delete" exact component={TaskDelete}></Route>
 							<Route path="/register" exact component={Register}></Route>
 							<Route path="/login" exact component={Login}></Route>
