@@ -43,7 +43,7 @@ class TaskList extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-	return {tasks: Object.values(state.tasks)};
+	return {tasks: Object.values(state.tasks), isSignedIn: state.auth};
 };
 
 export default connect(mapStateToProps, {fetchTasks, createTask})(TaskList);

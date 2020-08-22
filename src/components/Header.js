@@ -4,12 +4,17 @@ import {connect} from "react-redux";
 import {logout} from "../actions";
 
 class Header extends React.Component {
+	onLogoutClick = (e) => {
+		e.preventDefault();
+		this.props.logout();
+	};
+
 	renderAuth = () => {
 		if(this.props.isLoggedIn === null) {
 			return;
 		} else if(this.props.isLoggedIn) {
 			return (
-				<Link to="#" className="item" onClick={this.props.logout}>Logout</Link>
+				<Link to="/" className="item" onClick={(e) => this.onLogoutClick(e)}>Logout</Link>
 			);
 		} else {
 			return (

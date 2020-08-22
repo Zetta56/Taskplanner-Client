@@ -52,13 +52,14 @@ body {
 	position: relative;
 }
 
+#taskList .title div {
+	display: inline-block;
+}
+
 #taskList .content {
 	background-color: rgb(245, 245, 245);
 	padding: 20px 40px;
-}
-
-#taskList .name {
-	display: inline-block;
+	word-wrap: break-word;
 }
 
 #taskList .date {

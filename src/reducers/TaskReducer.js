@@ -3,11 +3,9 @@ import _ from "lodash";
 export default (state = {}, action) => {
 	switch(action.type) {
 		case "FETCH_TASKS":
-			const payloadObj = action.payload.reduce((payloadObj, task) => {	//Accumulates action.payload array's items into object
-				payloadObj[task._id] = task;
-				return payloadObj;
-			}, {});
-			return {...state, ...payloadObj};
+			//'Soft-drops' state on login and logout with pick
+			//Turns payload array into object with mapKeys
+			return {..._.pick(state, action.payload), ..._.mapKeys(action.payload, "_id")};
 		case "CREATE_TASK":
 		case "FETCH_TASK":
 		case "UPDATE_TASK":

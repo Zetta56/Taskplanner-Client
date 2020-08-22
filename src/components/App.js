@@ -14,23 +14,23 @@ import "./App.css";
 class App extends React.Component {
 	componentDidMount() {
 		history.listen(async (location) => {
+			await express.post("/refresh");
+
 			if(this.props.error) {
 				this.props.resetError();
 			};
-			await express.post("/refresh");
 		});
 
-		const isLoggedIn = async () => {
+		(async () => {
 			await express.post("/refresh");
-			const response = await express.post("/access");
+			const response = await express.get("/access");
 			
 			if(response.data) {
-				this.props.login(response.data._id);
+				this.props.login(response.data._id, "initial");
 			} else {
-				this.props.logout();
+				this.props.logout("initial");
 			};
-		};
-		isLoggedIn()
+		})();
 	};
 
 	renderError() {
