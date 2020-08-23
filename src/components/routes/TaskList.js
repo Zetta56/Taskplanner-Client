@@ -15,25 +15,26 @@ class TaskList extends React.Component {
 			description: "Enter a description here...",
 			date: new Date(),
 			editDisabled: false
-		}, this.props.userId);
+		});
 	};
 
 	renderCreateButton = () => {
-		if(this.props.userId) {
-			return (
-				<button className="ui primary button" onClick={this.onCreateClick}>
-					<i className="plus icon"></i>
-					Create New Task
-				</button>
-			);
-		} else {
+		//Displays popup if signed out user is clicking create for the first time
+		if(!this.props.isLoggedIn && !this.props.selectedCreate) {
 			return (
 				<Link to="/tasks/create/confirm" className="ui primary button">
 					<i className="plus icon"></i>
 					Create New Task
 				</Link>
 			);
-		};
+		} else {
+			return (
+				<button className="ui primary button" onClick={this.onCreateClick}>
+					<i className="plus icon"></i>
+					Create New Task
+				</button>
+			);
+		}
 	};
 
 	renderList = () => {
@@ -61,7 +62,11 @@ class TaskList extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-	return {tasks: Object.values(state.tasks), userId: state.auth.userId};
+	return {
+		tasks: Object.values(state.tasks),
+		isLoggedIn: state.auth.isLoggedIn,
+		selectedCreate: state.click.createButton
+	};
 };
 
 export default connect(mapStateToProps, {fetchTasks, createTask})(TaskList);

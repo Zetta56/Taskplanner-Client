@@ -9,6 +9,7 @@ import CustomEditable from "./CustomEditable";
 import "react-datepicker/dist/react-datepicker.css";
 
 class TaskItem extends React.Component {
+	//Note: onTitleClick refers to accordion title, not task title
 	onTitleClick = (index) => {
 		if(this.props.selected.includes(index)) {
 			this.props.deselectAccordion(index);
@@ -17,14 +18,27 @@ class TaskItem extends React.Component {
 		};
 	};
 
-	onEditClick = (e, editDisabled) => {
-		e.preventDefault();
-		this.props.updateTask({editDisabled: !editDisabled}, this.props.task._id);
-	};
-
 	onEditableSubmit = (e, type) => {
 		let sanitizedText = sanitize(e.target.textContent);
 		this.props.updateTask({[type]: sanitizedText}, this.props.task._id);
+	};
+
+	renderTaskTitle = ({editDisabled, title}) => {
+		if(editDisabled) {
+			return (
+				<Link to="#" onClick={(e) => e.stopPropagation()}>
+					<div>{title}</div>
+				</Link>
+			);
+		} else {
+			return (
+				<CustomEditable
+					text={title || "New Task"}
+					editDisabled={editDisabled}
+					onEditableSubmit={this.onEditableSubmit}
+					type="title" />
+			);
+		};
 	};
 
 	renderDate = ({editDisabled, date}) => {
@@ -36,48 +50,35 @@ class TaskItem extends React.Component {
 		};
 	};
 
-	renderEditButton = (editDisabled) => {
-		if(editDisabled) {
-			return (
-				<button className="ui yellow button" onClick={(e) => this.onEditClick(e, editDisabled)}>
-					<i className="edit icon" />
-				</button>
-			);
-		} else {
-			return (
-				<button className="ui green button" onClick={(e) => this.onEditClick(e, editDisabled)}>
-					<i className="check icon" />
-				</button>
-			);
-		};
-	};
-
 	render() {
+		if(!this.props.selected) {
+			return null;
+		};
+
 		const task = this.props.task,
 			  active = this.props.selected.includes(this.props.index) ? "active" : "",
-			  yellow = task.editDisabled ? "" : "LemonChiffon";
+			  editStyles = task.editDisabled
+			  	? {background: "", buttonColor: "yellow", buttonIcon: "edit"}
+			  	: {background: "LemonChiffon", buttonColor: "green", buttonIcon: "check"};
 
 		return (
 			<React.Fragment>
-				<div className={`title ${active}`} onClick={() => this.onTitleClick(this.props.index)} style={{backgroundColor: `${yellow}`}}>
+				<div className={`title ${active}`} onClick={() => this.onTitleClick(this.props.index)} style={{backgroundColor: `${editStyles.background}`}}>
 					<div className="icons" onClick={(e) => e.stopPropagation()}>
 						<Link to={`/tasks/${task._id}/delete`} className="ui red button">
 							<i className="trash icon" />
 						</Link>
-						{this.renderEditButton(task.editDisabled)}
+						<button
+							className={`ui ${editStyles.buttonColor} button`}
+							onClick={() => this.props.updateTask({editDisabled: !task.editDisabled}, this.props.task._id)}
+						>
+							<i className={`${editStyles.buttonIcon} icon`} />
+						</button>
 					</div>
-					<div className="date" onClick={(e) => e.stopPropagation()}>
-						{this.renderDate(task)}
-					</div>
-					<Link to="#" onClick={(e) => e.stopPropagation()}>
-						<CustomEditable
-							text={task.title || "New Task"}
-							editDisabled={task.editDisabled}
-							onEditableSubmit={this.onEditableSubmit}
-							type="title" />
-					</Link>
+					<div className="date" onClick={(e) => e.stopPropagation()}>{this.renderDate(task)}</div>
+					<div onClick={(e) => e.stopPropagation()}>{this.renderTaskTitle(task)}</div>
 				</div>
-				<div className={`content ${active}`} style={{backgroundColor: `${yellow}`}}>
+				<div className={`content ${active}`} style={{backgroundColor: `${editStyles.background}`}}>
 					<CustomEditable
 						text={task.description || "Enter a description here..."}
 						editDisabled={task.editDisabled}
@@ -90,7 +91,7 @@ class TaskItem extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-	return {selected: state.accordion};
+	return {selected: state.click.accordion};
 };
 
 export default connect(mapStateToProps, {updateTask, selectAccordion, deselectAccordion})(TaskItem);

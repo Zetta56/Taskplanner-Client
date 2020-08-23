@@ -28,6 +28,12 @@ export const deselectAccordion = (index) => {
 	};
 };
 
+export const selectCreate = () => {
+	return {
+		type: "SELECT_CREATE"
+	};
+};
+
 export const createUser = (formValues) => {
 	return async (dispatch) => {
 		const response = await express.post("/register", formValues);
@@ -98,9 +104,9 @@ export const fetchTasks = () => {
 	};
 };
 
-export const createTask = (formValues, userId) => {
+export const createTask = (formValues) => {
 	return async (dispatch) => {
-		const response = await express.post("/tasks/new", {...formValues, creator: userId});
+		const response = await express.post("/tasks/new", {...formValues});
 		
 		if(response.data.message) {
 			return dispatch(error(response.data.message));
@@ -110,7 +116,7 @@ export const createTask = (formValues, userId) => {
 			type: "CREATE_TASK",
 			payload: response.data
 		});
-		console.log("pushing")
+		
 		history.push("/");
 	};
 };

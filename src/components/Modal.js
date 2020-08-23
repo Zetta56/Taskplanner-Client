@@ -8,7 +8,7 @@ class Modal extends React.Component {
 				<div className="ui dimmer active" onClick={this.props.onDismiss}>
 					<div className="ui modal active" onClick={(e) => e.stopPropagation()}>
 						<div className="header">{this.props.header}</div>
-						<div className="content">{this.props.content}</div>
+						<div className="content" style={{fontSize: "17px"}}>{this.props.content}</div>
 						<div className="actions">{this.props.buttons}</div>
 					</div>
 				</div>,

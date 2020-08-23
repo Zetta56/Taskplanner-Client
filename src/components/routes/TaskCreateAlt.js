@@ -1,11 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {createTask} from "../../actions";
+import {createTask, selectCreate} from "../../actions";
 import Modal from "../Modal";
 
 class TaskCreateAlt extends React.Component {
 	onCreateClick = () => {
+		this.props.selectCreate();
+		
 		this.props.createTask({
 			title: "New Task",
 			description: "Enter a description here...",
@@ -33,4 +35,4 @@ class TaskCreateAlt extends React.Component {
 	}
 };
 
-export default connect(null, {createTask})(TaskCreateAlt);
+export default connect(null, {createTask, selectCreate})(TaskCreateAlt);
