@@ -87,6 +87,10 @@ export const fetchTasks = () => {
 	return async (dispatch) => {
 		const response = await express.get("/tasks");
 		
+		if(response.data.message) {
+			return dispatch(error(response.data.message));
+		};
+
 		dispatch({
 			type: "FETCH_TASKS",
 			payload: response.data
@@ -94,9 +98,9 @@ export const fetchTasks = () => {
 	};
 };
 
-export const createTask = (formValues) => {
+export const createTask = (formValues, userId) => {
 	return async (dispatch) => {
-		const response = await express.post("/tasks/new", formValues);
+		const response = await express.post("/tasks/new", {...formValues, creator: userId});
 		
 		if(response.data.message) {
 			return dispatch(error(response.data.message));
@@ -106,7 +110,7 @@ export const createTask = (formValues) => {
 			type: "CREATE_TASK",
 			payload: response.data
 		});
-
+		console.log("pushing")
 		history.push("/");
 	};
 };
@@ -144,10 +148,30 @@ export const updateTask = (formValues, taskId) => {
 	};
 };
 
+export const deleteAnonymousTasks = () => {
+	return async (dispatch) => {
+		const response = await express.delete("/tasks/anonymous");
+
+		if(response.data.message) {
+			return dispatch(error(response.data.message));
+		};
+
+		dispatch({
+			type: "DELETE_TASKS"
+		});
+
+		history.push("/");
+	};
+};
+
 export const deleteTask = (taskId) => {
 	return async (dispatch) => {
 		const response = await express.delete(`/tasks/${taskId}`);
 		
+		if(response.data.message) {
+			return dispatch(error(response.data.message));
+		};
+
 		dispatch({
 			type: "DELETE_TASK",
 			payload: response.data
