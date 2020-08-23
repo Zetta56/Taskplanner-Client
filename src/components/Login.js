@@ -28,7 +28,7 @@ class Login extends React.Component {
 						<button className="ui primary button" id="submitButton">Submit</button>
 					</form>
 					<div className="registerMessage">
-						Don't have an account? 
+						Don't have an account?
 						<Link to="/register">Sign up</Link>
 					</div>
 				</div>

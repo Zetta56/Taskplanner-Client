@@ -7,11 +7,12 @@ import {deleteAnonymousTasks, resetError, login, logout} from "../actions";
 import Header from "./Header";
 import Register from "./Register";
 import Login from "./Login";
-import TaskList from "./routes/TaskList";
-import TaskCreateAlt from "./routes/TaskCreateAlt";
-import TaskDelete from "./routes/TaskDelete";
+import TaskList from "./tasks/TaskList";
+import TaskCreateAlt from "./tasks/TaskCreateAlt";
+import TaskDelete from "./tasks/TaskDelete";
+import TaskShow from "./tasks/TaskShow";
 import "./App.css";
-//Will add react draggable
+
 class App extends React.Component {
 	componentDidMount() {
 		history.listen(async (location) => {
@@ -63,8 +64,9 @@ class App extends React.Component {
 					<div className="ui container">
 						<Switch>
 							<Route path="/" exact component={TaskList}></Route>
-							<Route path="/tasks/create/confirm" exact component={TaskCreateAlt}></Route>
+							<Route path="/tasks/create" exact component={TaskCreateAlt}></Route>
 							<Route path="/tasks/:id/delete" exact component={TaskDelete}></Route>
+							<Route path="/tasks/:id" exact component={TaskShow}></Route>
 							<Route path="/register" exact component={Register}></Route>
 							<Route path="/login" exact component={Login}></Route>
 						</Switch>

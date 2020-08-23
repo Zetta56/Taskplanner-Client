@@ -11,8 +11,7 @@ class TaskCreateAlt extends React.Component {
 		this.props.createTask({
 			title: "New Task",
 			description: "Enter a description here...",
-			date: new Date(),
-			editDisabled: false
+			date: Date.now()
 		});
 	};
 

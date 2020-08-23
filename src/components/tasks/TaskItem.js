@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import sanitize from "sanitize-html-react";
-import {updateTask, selectAccordion, deselectAccordion} from "../actions";
-import CustomEditable from "./CustomEditable";
+import {updateTask, selectAccordion, deselectAccordion} from "../../actions";
+import CustomEditable from "../CustomEditable";
 import "react-datepicker/dist/react-datepicker.css";
 
 class TaskItem extends React.Component {
@@ -23,17 +23,15 @@ class TaskItem extends React.Component {
 		this.props.updateTask({[type]: sanitizedText}, this.props.task._id);
 	};
 
-	renderTaskTitle = ({editDisabled, title}) => {
+	renderTaskTitle = ({editDisabled, title, _id}) => {
 		if(editDisabled) {
 			return (
-				<Link to="#" onClick={(e) => e.stopPropagation()}>
-					<div>{title}</div>
-				</Link>
+				<Link to={`/tasks/${_id}`} onClick={(e) => e.stopPropagation()}>{title}</Link>
 			);
 		} else {
 			return (
 				<CustomEditable
-					text={title || "New Task"}
+					text={title}
 					editDisabled={editDisabled}
 					onEditableSubmit={this.onEditableSubmit}
 					type="title" />
@@ -46,7 +44,9 @@ class TaskItem extends React.Component {
 			return <span>{moment(date).format("MMM DD, YYYY")}</span>
 		} else {
 			//Note: Datepicker only accepts Date object, not ISO Date string
-			return <DatePicker selected={moment(date)._d} onChange={(pickedDate) => this.props.updateTask({date: pickedDate}, this.props.task._id)} />
+			return <DatePicker
+						selected={moment(date)._d}
+						onChange={(pickedDate) => this.props.updateTask({date: pickedDate || Date.now()}, this.props.task._id)} />
 		};
 	};
 

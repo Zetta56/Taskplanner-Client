@@ -6,6 +6,10 @@ body {
 	padding-top: 3.6rem;
 }
 
+#mainContainer > .ui.container {
+	padding-top: 40px;
+}
+
 #errorMessage {
 	text-align: center;
 }
@@ -16,7 +20,7 @@ body {
 }
 
 #userForm {
-	margin: 80px auto;
+	margin: 70px auto;
 }
 
 #userForm .eight.wide.column {
@@ -46,7 +50,6 @@ body {
 	width: 90%;
 }
 
-#taskList,
 #taskList .ui.styled.accordion {
 	margin-top: 20px;
 }
@@ -108,6 +111,23 @@ body {
 	font-size: 20px;
 	margin: 0 !important;
 	opacity: 0;
+}
+
+#taskShow {
+	background: white;
+}
+
+#taskShow .header {
+	border-bottom: 1px solid lightgray;
+	font-size: 24px;
+	padding: 25px 40px;
+	width: 100%;
+}
+
+#taskShow .meta {
+	font-size: 16px;
+	margin: 0;
+	padding: 25px 40px;
 }
 
 /* Overriding Semantic UI Styles */

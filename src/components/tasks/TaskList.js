@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchTasks, createTask} from "../../actions";
-import TaskItem from "../TaskItem";
+import TaskItem from "./TaskItem";
 
 class TaskList extends React.Component {
 	componentDidMount() {
@@ -13,8 +13,7 @@ class TaskList extends React.Component {
 		this.props.createTask({
 			title: "New Task",
 			description: "Enter a description here...",
-			date: new Date(),
-			editDisabled: false
+			date: Date.now()
 		});
 	};
 
@@ -22,7 +21,7 @@ class TaskList extends React.Component {
 		//Displays popup if signed out user is clicking create for the first time
 		if(!this.props.isLoggedIn && !this.props.selectedCreate) {
 			return (
-				<Link to="/tasks/create/confirm" className="ui primary button">
+				<Link to="/tasks/create" className="ui primary button">
 					<i className="plus icon"></i>
 					Create New Task
 				</Link>
