@@ -49,13 +49,21 @@ class TaskList extends React.Component {
 		});
 	};
 
+	renderAccordion = () => {
+		if(this.props.tasks.length !== 0) {
+			return (
+				<div className="ui styled accordion">
+					{this.renderList()}
+				</div>
+			);
+		};
+	};
+
 	render() {
 		return (
 			<div id="taskList">
 				{this.renderCreateButton()}
-				<div className="ui styled accordion">
-					{this.renderList()}
-				</div>
+				{this.renderAccordion()}
 			</div>
 		);
 	};

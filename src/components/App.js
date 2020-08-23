@@ -43,7 +43,7 @@ class App extends React.Component {
 
 	componentCleanup = () => {
 		//Sends async request when available, even after redirect
-		navigator.sendBeacon("http://localhost:3001/tasks/anonymous");
+		navigator.sendBeacon(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:3001"}/tasks/anonymous`);
 	};
 
 	renderError() {
