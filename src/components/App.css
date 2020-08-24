@@ -115,19 +115,20 @@ body {
 
 #taskShow {
 	background: white;
+	padding: 0 40px;
 }
 
 #taskShow .header {
 	border-bottom: 1px solid lightgray;
 	font-size: 24px;
-	padding: 25px 40px;
+	padding: 25px 0;
 	width: 100%;
 }
 
 #taskShow .meta {
 	font-size: 16px;
 	margin: 0;
-	padding: 25px 40px;
+	padding: 25px 0;
 }
 
 /* Overriding Semantic UI Styles */

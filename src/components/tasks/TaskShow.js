@@ -1,15 +1,20 @@
 import React from "react";
-import Reorder, {reorder, reorderFromTo} from 'react-reorder';
+import Reorder, {reorder, reorderFromTo} from "react-reorder";
 import {connect} from "react-redux";
-import {fetchTask} from "../../actions";
+import {fetchTask, reorderSteps, fetchSteps, createStep} from "../../actions";
+import StepItem from "../StepItem"
 
 class TaskShow extends React.Component {
 	state = {list: [{name: "item1"}, {name: "item2"}, {name: "item3"}]}
-	onReorder = (event, previousIndex, nextIndex, fromId, toId) => {
-	  this.setState({
-	    list: reorder(this.state.list, previousIndex, nextIndex)
-	  });
-	}
+	// onReorder = (e, previousIndex, nextIndex) => {
+	//   this.setState({
+	//     list: reorder(this.state.list, previousIndex, nextIndex)
+	//   });
+	// }
+
+	onReorder = (event, previousIndex, nextIndex) => {
+		this.props.reorderSteps(this.props.steps, previousIndex, nextIndex);
+	};
 
 	// <Reorder
 	//   reorderId="my-list" // Unique ID that is used internally to track this list (required)
@@ -28,15 +33,29 @@ class TaskShow extends React.Component {
 	// </Reorder>
 
 	componentDidMount() {
-		this.props.fetchTask(this.props.match.params.id);
+		const fetchResources = async () => {
+			await this.props.fetchTask(this.props.match.params.id);
+			await this.props.fetchSteps(this.props.match.params.id);
+		};
+
+		fetchResources();
 	};
 
-	renderListItem = () => {
-		return <h1>Item</h1>
-	}
+	renderList = () => {
+		return this.props.steps.map((step) => {
+			return (
+				<div key={step._id}>
+					<StepItem step={step} task={this.props.task} />
+				</div>
+			);
+		});
+		// return this.state.list.map(item => {
+		// 	return <li key={item.name}>{item.name}</li>
+		// })
+	};
 
 	render() {
-		if(!this.props.task) {
+		if(!this.props.task || !this.props.steps) {
 			return null;
 		};
 
@@ -50,20 +69,14 @@ class TaskShow extends React.Component {
 						<div className="meta">{task.description}</div>
 					</div>
 				</div>
+				<button className="ui teal button" onClick={() => this.props.createStep({content: "New Step"}, task._id)}>Add New Step</button>
 				<Reorder
-				  reorderId="my-list"
-				  component="ul"
-				  lock="horizontal"
-				  onReorder={this.onReorder}
-				  placeholder={<div className="custom-placeholder" />}
+					reorderId="stepList"
+					lock="horizontal"
+					onReorder={this.onReorder}
+					placeholder={<div className="custom-placeholder" />}
 				>
-				  {
-				    this.state.list.map((item) => (
-				      <li key={item.name}>
-				        {item.name}
-				      </li>
-				    ))
-				  }
+					{this.renderList()}
 				</Reorder>
 			</div>
 		);
@@ -71,7 +84,7 @@ class TaskShow extends React.Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-	return {task: state.tasks[ownProps.match.params.id]}
+	return {task: state.tasks[ownProps.match.params.id], steps: state.steps};
 };
 
-export default connect(mapStateToProps, {fetchTask})(TaskShow);
+export default connect(mapStateToProps, {fetchTask, reorderSteps, fetchSteps, createStep})(TaskShow);

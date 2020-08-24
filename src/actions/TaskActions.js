@@ -19,7 +19,7 @@ export const fetchTasks = () => {
 
 export const createTask = (formValues) => {
 	return async (dispatch) => {
-		const response = await express.post("/tasks/new", {...formValues});
+		const response = await express.post("/tasks", {...formValues});
 		
 		if(response.data.message) {
 			return dispatch(error(response.data.message));
