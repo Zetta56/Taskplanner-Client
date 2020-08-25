@@ -1,0 +1,77 @@
+#taskList .ui.styled.accordion {
+	font-size: 20px;
+	margin-top: 20px;
+	width: 100%;
+}
+
+#taskList .title {
+	line-height: 1.2;
+	padding: 25px 0px 25px 40px;
+	position: relative;
+}
+
+#taskList .content {
+	background-color: rgb(245, 245, 245);
+	padding: 20px 40px;
+	word-wrap: break-word;
+}
+
+.title div {
+	display: inline-block;
+}
+
+.title .date {
+	position: absolute;
+	right: 0;
+	margin-right: 40px;
+	transition: 200ms;
+}
+
+.title .react-datepicker__input-container input {
+	border: 1px solid rgba(34,36,38,.15);
+	border-radius: .3rem;
+	margin-top: -12px;
+	outline: 0;
+	padding: .6em .8em;
+	width: 140px;
+}
+
+.icons {
+	position: absolute;
+	direction: rtl;
+	right: 0;
+    height: 100%;
+    margin-top: -25px;
+    width: 130px;
+}
+
+.icons .ui.button {
+	border-radius: 0;
+	margin: 0;
+	padding: 28px 0;
+	width: 0;
+	transition: 200ms;
+}
+
+.icons .ui.button .icon {
+	font-size: 20px;
+	opacity: 0;
+}
+
+/* Pseudo-Selectors */
+
+.title:hover .date {
+    right: 122px !important;
+}
+
+.title:hover .ui.button {
+    width: 65px !important;
+}
+
+.title:hover .icon {
+    opacity: 1 !important;
+}
+
+.react-datepicker__input-container input:focus {
+	border-color: #85b7d9 !important;
+}

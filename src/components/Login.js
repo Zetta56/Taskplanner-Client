@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {reduxForm, Field} from "redux-form";
 import {connect} from "react-redux";
 import {login} from "../actions";
+import "./UserForm.css";
 
 class Login extends React.Component {
 	onFormSubmit = (formValues) => {

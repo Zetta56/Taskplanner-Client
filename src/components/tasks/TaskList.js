@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchTasks, createTask} from "../../actions";
 import TaskItem from "./TaskItem";
+import "./TaskList.css"
 
 class TaskList extends React.Component {
 	componentDidMount() {

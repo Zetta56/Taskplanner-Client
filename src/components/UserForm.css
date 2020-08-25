@@ -1,0 +1,31 @@
+/* Note: Has unique file name due to usage in multiple components */
+#userForm {
+	margin: 70px auto;
+}
+
+#userForm .eight.wide.column {
+	background-color: white;
+	margin: 0 auto;
+	padding: 30px 16px;
+}
+
+.eight.wide.column h2 {
+	text-align: center;
+}
+
+.eight.wide.column .field,
+.eight.wide.column .ui.button.primary {
+	font-size: 16px;
+	margin: 15px 5%;
+	width: 90%;
+}
+
+.registerMessage {
+	font-size: 16px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.registerMessage a {
+	margin-left: 5px;
+}

@@ -1,36 +1,14 @@
 import React from "react";
-import Reorder, {reorder, reorderFromTo} from "react-reorder";
+import Reorder from "react-reorder";
 import {connect} from "react-redux";
 import {fetchTask, reorderSteps, fetchSteps, createStep} from "../../actions";
-import StepItem from "../StepItem"
+import StepItem from "../StepItem";
+import "./TaskShow.css";
 
 class TaskShow extends React.Component {
-	state = {list: [{name: "item1"}, {name: "item2"}, {name: "item3"}]}
-	// onReorder = (e, previousIndex, nextIndex) => {
-	//   this.setState({
-	//     list: reorder(this.state.list, previousIndex, nextIndex)
-	//   });
-	// }
-
 	onReorder = (event, previousIndex, nextIndex) => {
-		this.props.reorderSteps(this.props.steps, previousIndex, nextIndex);
+		this.props.reorderSteps(this.props.steps, previousIndex, nextIndex, this.props.task._id);
 	};
-
-	// <Reorder
-	//   reorderId="my-list" // Unique ID that is used internally to track this list (required)
-	//   component="ul" // Tag name or Component to be used for the wrapping element (optional), defaults to 'div'
-	//   lock="horizontal" // Lock the dragging direction (optional): vertical, horizontal (do not use with groups)
-	//   onReorder={this.onReorder} // Callback when an item is dropped (you will need this to update your state)
-	//   placeholder={<div className="custom-placeholder" />}
-	// >
-	//   {
-	//     this.state.list.map((item) => (
-	//       <li key={item.name}>
-	//         {item.name}
-	//       </li>
-	//     ))
-	//   }
-	// </Reorder>
 
 	componentDidMount() {
 		const fetchResources = async () => {
@@ -49,9 +27,6 @@ class TaskShow extends React.Component {
 				</div>
 			);
 		});
-		// return this.state.list.map(item => {
-		// 	return <li key={item.name}>{item.name}</li>
-		// })
 	};
 
 	render() {
@@ -62,22 +37,24 @@ class TaskShow extends React.Component {
 		const task = this.props.task;
 		
 		return (
-			<div className="ui items" id="taskShow">
-				<div className="item">
-					<div className="content">
-						<h1 className="header">{task.title}</h1>
-						<div className="meta">{task.description}</div>
-					</div>
+			<div id="taskShow">
+				<div className="info">
+					<h1 className="title">{task.title}</h1>
+					<div className="description">{task.description}</div>
 				</div>
-				<button className="ui teal button" onClick={() => this.props.createStep({content: "New Step"}, task._id)}>Add New Step</button>
-				<Reorder
-					reorderId="stepList"
-					lock="horizontal"
-					onReorder={this.onReorder}
-					placeholder={<div className="custom-placeholder" />}
-				>
-					{this.renderList()}
-				</Reorder>
+				<div className="steps">
+					<button className="ui blue button" onClick={() => this.props.createStep({content: "New Step"}, task._id)}>Add New Step</button>
+					<Reorder
+						reorderId="stepList"
+						draggedClassName="dragged"
+						placeholderClassName="placeholder"
+						lock="horizontal"
+						holdTime={75}
+						onReorder={this.onReorder}
+					>
+						{this.renderList()}
+					</Reorder>
+				</div>
 			</div>
 		);
 	};

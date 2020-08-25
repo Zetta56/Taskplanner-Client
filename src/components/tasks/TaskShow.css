@@ -1,0 +1,53 @@
+#taskShow > div {
+	background: white;
+	padding: 25px 40px;
+	margin-top: 20px;
+}
+
+.info .title {
+	font-size: 24px;
+	padding-bottom: 25px;
+	width: 100%;
+}
+
+.info .description {
+	font-size: 16px;
+	margin: 0;
+}
+
+.steps .dragged {
+	display: none;
+}
+
+.steps .placeholder .stepItem {
+	background-color: LemonChiffon;
+}
+
+.stepItem {
+	background-color: whitesmoke;
+	border-radius: .28571429rem;
+	position: relative;
+	margin: 25px auto;
+	padding: 25px 40px;
+	text-align: center;
+	width: 85%;
+	word-wrap: break-word;
+}
+
+.stepItem div {
+	font-size: 20px;
+	margin-right: 70px;
+}
+
+.stepItem .ui.button {
+	position: absolute;
+	height: 100%;
+	margin: 0;
+	top: 0;
+	right: 0;
+}
+
+.stepItem .ui.button .icon {
+	font-size: 20px;
+	margin: 0;
+}

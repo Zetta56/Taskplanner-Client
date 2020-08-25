@@ -1,12 +1,17 @@
-import Reorder, {reorder, reorderFromTo} from "react-reorder";
+import {reorder} from "react-reorder";
 import express from "../api/express";
 import {error} from "./index";
 
-export const reorderSteps = (steps, previousIndex, nextIndex) => {
-	return {
-		type: "REORDER_STEPS",
-		payload: reorder(steps, previousIndex, nextIndex)
-	}
+export const reorderSteps = (steps, previousIndex, nextIndex, taskId) => {
+	return async (dispatch) => {
+		const response = await express.post(`/tasks/${taskId}/steps/reorder`, reorder(steps, previousIndex, nextIndex));
+		if(response.data.message) {
+			return dispatch(error(response.data.message));
+		};
+
+		//Fetches list with updated order
+		dispatch(fetchSteps(taskId));
+	};
 };
 
 export const fetchSteps = (taskId) => {
@@ -39,7 +44,7 @@ export const createStep = (formValues, taskId) => {
 	};
 };
 
-export const updateStep = (formValues, taskId, stepId) => {
+export const updateStep = (formValues, stepId, taskId) => {
 	return async (dispatch) => {
 		const response = await express.put(`/tasks/${taskId}/steps/${stepId}`, formValues);
 		
@@ -54,7 +59,7 @@ export const updateStep = (formValues, taskId, stepId) => {
 	};
 };
 
-export const deleteStep = (taskId, stepId) => {
+export const deleteStep = (stepId, taskId) => {
 	return async (dispatch) => {
 		const response = await express.delete(`/tasks/${taskId}/steps/${stepId}`);
 		

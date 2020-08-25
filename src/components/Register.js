@@ -2,6 +2,7 @@ import React from "react";
 import {reduxForm, Field} from "redux-form";
 import {connect} from "react-redux";
 import {createUser} from "../actions";
+import "./UserForm.css";
 
 class Register extends React.Component {
 	onFormSubmit = ({email, username, password}) => {
@@ -51,6 +52,7 @@ class Register extends React.Component {
 	};
 };
 
+//Redux-form uses validate function's object to render specific errors
 const validate = ({email, username, password, confirmPassword}) => {
 	const err = {};
 	const emailRegex = RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g);
