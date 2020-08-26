@@ -22,14 +22,14 @@ class TaskList extends React.Component {
 		//Displays popup if signed out user is clicking create for the first time
 		if(!this.props.isLoggedIn && !this.props.selectedCreate) {
 			return (
-				<Link to="/tasks/create" className="ui primary button">
+				<Link to="/tasks/create" className="ui blue button">
 					<i className="plus icon"></i>
 					Create New Task
 				</Link>
 			);
 		} else {
 			return (
-				<button className="ui primary button" onClick={this.onCreateClick}>
+				<button className="ui blue button" onClick={this.onCreateClick}>
 					<i className="plus icon"></i>
 					Create New Task
 				</button>

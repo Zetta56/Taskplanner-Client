@@ -14,7 +14,7 @@ class TaskDelete extends React.Component {
 		return (
 			<React.Fragment>
 				<button className="ui primary button" onClick={() => this.props.deleteTask(this.props.match.params.id)}>Confirm</button>
-				<Link to="/" className="ui button">Cancel</Link>
+				<Link to="/" className="ui button" style={{border: "1px solid gray"}}>Cancel</Link>
 			</React.Fragment>
 		);
 	};

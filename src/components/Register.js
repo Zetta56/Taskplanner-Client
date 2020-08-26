@@ -44,7 +44,7 @@ class Register extends React.Component {
 						<Field name="username" component={this.renderInput} placeholder="Username" inputType="text" />
 						<Field name="password" component={this.renderInput} placeholder="Password" inputType="password" />
 						<Field name="confirmPassword" component={this.renderInput} placeholder="Confirm Password" inputType="password" />
-						<button className="ui primary button" id="submitButton">Submit</button>
+						<button className="ui blue button" id="submitButton">Submit</button>
 					</form>
 				</div>
 			</div>

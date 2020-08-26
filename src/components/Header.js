@@ -28,7 +28,7 @@ class Header extends React.Component {
 	
 	render() {
 		return (
-			<div className="ui blue inverted top fixed pointing menu" id="header">
+			<div className="ui inverted top fixed pointing menu" id="header">
 				<div className="ui container">
 					<Link to="/" className="header item">TaskPlanner</Link>
 					<div className="inverted right menu">

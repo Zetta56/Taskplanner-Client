@@ -1,5 +1,4 @@
 #taskShow > div {
-	background: white;
 	padding: 25px 40px;
 	margin-top: 20px;
 }
@@ -19,12 +18,7 @@
 	display: none;
 }
 
-.steps .placeholder .stepItem {
-	background-color: LemonChiffon;
-}
-
 .stepItem {
-	background-color: whitesmoke;
 	border-radius: .28571429rem;
 	position: relative;
 	margin: 25px auto;

@@ -30,11 +30,13 @@ class TaskItem extends React.Component {
 			);
 		} else {
 			return (
+				<div className="taskTitle">
 				<CustomEditable
 					text={title}
 					editDisabled={editDisabled}
 					onEditableSubmit={this.onEditableSubmit}
 					type="title" />
+				</div>
 			);
 		};
 	};
@@ -57,28 +59,27 @@ class TaskItem extends React.Component {
 
 		const task = this.props.task,
 			  active = this.props.selected.includes(this.props.index) ? "active" : "",
-			  editStyles = task.editDisabled
-			  	? {background: "", buttonColor: "yellow", buttonIcon: "edit"}
-			  	: {background: "LemonChiffon", buttonColor: "green", buttonIcon: "check"};
+			  editting = task.editDisabled ? "" : "editting",
+			  editIcon = task.editDisabled ? "edit" : "check";
 
 		return (
 			<React.Fragment>
-				<div className={`title ${active}`} onClick={() => this.onTitleClick(this.props.index)} style={{backgroundColor: `${editStyles.background}`}}>
+				<div className={`title ${active} ${editting}`} onClick={() => this.onTitleClick(this.props.index)}>
 					<div className="icons" onClick={(e) => e.stopPropagation()}>
 						<Link to={`/tasks/${task._id}/delete`} className="ui red button">
 							<i className="trash icon" />
 						</Link>
 						<button
-							className={`ui ${editStyles.buttonColor} button`}
+							className={`ui edit button ${editting}`}
 							onClick={() => this.props.updateTask({editDisabled: !task.editDisabled}, this.props.task._id)}
 						>
-							<i className={`${editStyles.buttonIcon} icon`} />
+							<i className={`${editIcon} icon`} />
 						</button>
 					</div>
 					<div className="date" onClick={(e) => e.stopPropagation()}>{this.renderDate(task)}</div>
-					<div onClick={(e) => e.stopPropagation()}>{this.renderTaskTitle(task)}</div>
+					<div onClick={(e) => e.stopPropagation()} className="taskTitle">{this.renderTaskTitle(task)}</div>
 				</div>
-				<div className={`content ${active}`} style={{backgroundColor: `${editStyles.background}`}}>
+				<div className={`content ${active} ${editting}`}>
 					<CustomEditable
 						text={task.description || "Enter a description here..."}
 						editDisabled={task.editDisabled}

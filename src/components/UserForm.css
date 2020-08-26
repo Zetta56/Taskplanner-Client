@@ -4,7 +4,6 @@
 }
 
 #userForm .eight.wide.column {
-	background-color: white;
 	margin: 0 auto;
 	padding: 30px 16px;
 }
@@ -14,7 +13,7 @@
 }
 
 .eight.wide.column .field,
-.eight.wide.column .ui.button.primary {
+.eight.wide.column .ui.blue.button {
 	font-size: 16px;
 	margin: 15px 5%;
 	width: 90%;

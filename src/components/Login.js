@@ -26,7 +26,7 @@ class Login extends React.Component {
 						<h2>Login</h2>
 						<Field name="username" component={this.renderInput} placeholder="Username" inputType="text" />
 						<Field name="password" component={this.renderInput} placeholder="Password" inputType="password" />
-						<button className="ui primary button" id="submitButton">Submit</button>
+						<button className="ui blue button" id="submitButton">Submit</button>
 					</form>
 					<div className="registerMessage">
 						Don't have an account?

@@ -43,7 +43,7 @@ class TaskShow extends React.Component {
 					<div className="description">{task.description}</div>
 				</div>
 				<div className="steps">
-					<button className="ui blue button" onClick={() => this.props.createStep({content: "New Step"}, task._id)}>Add New Step</button>
+					<button className="ui large blue button" onClick={() => this.props.createStep({content: "New Step"}, task._id)}>Add New Step</button>
 					<Reorder
 						reorderId="stepList"
 						draggedClassName="dragged"

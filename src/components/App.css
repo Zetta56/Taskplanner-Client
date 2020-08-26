@@ -1,7 +1,3 @@
-body {
-	background-color: aliceblue;
-}
-
 #mainContainer {
 	padding-top: 3.6rem;
 }
@@ -19,9 +15,65 @@ body {
 	outline: 0;
 }
 
+/* Colors */
+
+body {
+	background-color: #2a2a2a;	/*darkest gray*/
+}
+
+#header,
+#taskList .content,
+#taskShow .stepItem {
+	background-color: #3f3f3f;	/*dark gray*/
+}
+
+#userForm .eight.wide.column,
+#taskList .ui.styled.accordion,
+#taskShow > div {
+	background-color: #494949;	/*gray*/
+}
+
+#taskList .react-datepicker__input-container input {
+	background-color: #D7D7D7;	/*light gray*/
+}
+
+body,
+#taskList .taskTitle,
+#taskList .date span,
+#taskList .ui.edit.button {
+	color: #EDEDED;		/*white-ish*/
+}
+
+#userForm .registerMessage a,
+.title .taskTitle a {
+	color: #6ab0f3;		/*light-blue*/
+}
+
+.ui.red.button {
+	background-color: #e73e3e;	/*red*/
+}
+
+.ui.blue.button {
+	background-color: #5aa0e3;	/*blue*/
+}
+
+.ui.edit.button {
+	background-color: #F0B800;	/*yellow*/
+}
+
+.ui.edit.button.editting {
+	background-color: #63c34d;	/*green*/
+}
+
+#taskList .title.editting,
+#taskList .content.editting,
+#taskShow .placeholder .stepItem {
+	background-color: #42576d; /*dark blue*/
+}
+
 /* Overriding Semantic UI Styles */
 
-.icon {
+.icon:not(.plus) {
 	margin: 0 !important;
 }
 
