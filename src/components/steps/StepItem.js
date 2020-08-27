@@ -1,13 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
-import sanitize from "sanitize-html-react";
-import {updateStep, deleteStep} from "../actions";
-import CustomEditable from "./CustomEditable";
+import {updateStep, deleteStep} from "../../actions";
+import CustomEditable from "../CustomEditable";
 
 class StepItem extends React.Component {
-	onEditableSubmit = (e, type) => {
-		let sanitizedText = sanitize(e.target.textContent);
-		this.props.updateStep({[type]: sanitizedText}, this.props.step._id, this.props.task._id);
+	onEditableSubmit = (text, type) => {
+		this.props.updateStep({[type]: text}, this.props.step._id, this.props.task._id);
 	}
 
 	render() {

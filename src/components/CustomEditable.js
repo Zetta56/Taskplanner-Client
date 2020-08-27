@@ -1,5 +1,6 @@
 import React from "react";
 import ContentEditable from "react-contenteditable";
+import sanitize from "sanitize-html-react";
 
 class CustomEditable extends React.Component {
 	onEditableClick = (e) => {
@@ -19,7 +20,7 @@ class CustomEditable extends React.Component {
 
 		//Submits when enter key pressed
 		if(e.which === 13) {
-			this.props.onEditableSubmit(e, this.props.type);
+			this.props.onEditableSubmit(sanitize(e.target.textContent), this.props.type);
 		}
 
 		//Stops string at specified max
@@ -35,7 +36,7 @@ class CustomEditable extends React.Component {
 				disabled={this.props.editDisabled}
 				onKeyDown={(e) => this.onEditableKeydown(e)}
 				onClick={(e) => this.onEditableClick(e)}
-				onBlur={(e) => this.props.onEditableSubmit(e, this.props.type)} />
+				onBlur={(e) => this.props.onEditableSubmit(sanitize(e.target.textContent), this.props.type)} />
 		);
 	};
 };

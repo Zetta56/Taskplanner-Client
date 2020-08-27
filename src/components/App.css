@@ -18,57 +18,72 @@
 /* Colors */
 
 body {
-	background-color: #2a2a2a;	/*darkest gray*/
+	background-color: #202020;	/*darkest gray*/
+}
+
+#taskShow .stepItem {
+	background-color: #2a2a2a;	/*darker gray*/
 }
 
 #header,
-#taskList .content,
-#taskShow .stepItem {
-	background-color: #3f3f3f;	/*dark gray*/
+#taskList .content {
+	background-color: #333333;	/*dark gray*/
 }
 
 #userForm .eight.wide.column,
 #taskList .ui.styled.accordion,
 #taskShow > div {
-	background-color: #494949;	/*gray*/
+	background-color: #3c3c3c;	/*gray*/
 }
 
-#taskList .react-datepicker__input-container input {
-	background-color: #D7D7D7;	/*light gray*/
+#taskList .late,
+#taskList .ui.styled.accordion .done {
+	background-color: #818181;	/*light gray*/
+}
+
+#taskList input {
+	background-color: #D7D7D7;	/*lighter gray*/
 }
 
 body,
 #taskList .taskTitle,
 #taskList .date span,
-#taskList .ui.edit.button {
+#taskList .ui.edit.button,
+#taskList .ui.label {
 	color: #EDEDED;		/*white-ish*/
+}
+
+#taskList .immediate,
+.ui.red.button {
+	background-color: #e74c3e;	/*red*/
+}
+
+#taskList .soon,
+.ui.edit.button {
+	background-color: #f0a400;	/*yellow*/
+}
+
+#taskList .later,
+.ui.edit.button.editting {
+	background-color: #55b83e;	/*green*/
+}
+
+#taskList .content.editting,
+#taskShow .placeholder .stepItem {
+	background-color: #32475d; /*darker blue*/
+}
+
+#taskList .title.editting {
+	background-color: #42576d; /*dark blue*/
+}
+
+.ui.blue.button {
+	background-color: #589de0;	/*blue*/
 }
 
 #userForm .registerMessage a,
 .title .taskTitle a {
 	color: #6ab0f3;		/*light-blue*/
-}
-
-.ui.red.button {
-	background-color: #e73e3e;	/*red*/
-}
-
-.ui.blue.button {
-	background-color: #5aa0e3;	/*blue*/
-}
-
-.ui.edit.button {
-	background-color: #F0B800;	/*yellow*/
-}
-
-.ui.edit.button.editting {
-	background-color: #63c34d;	/*green*/
-}
-
-#taskList .title.editting,
-#taskList .content.editting,
-#taskShow .placeholder .stepItem {
-	background-color: #42576d; /*dark blue*/
 }
 
 /* Overriding Semantic UI Styles */

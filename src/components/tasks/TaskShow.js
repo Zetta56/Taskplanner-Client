@@ -2,7 +2,7 @@ import React from "react";
 import Reorder from "react-reorder";
 import {connect} from "react-redux";
 import {fetchTask, reorderSteps, fetchSteps, createStep} from "../../actions";
-import StepItem from "../StepItem";
+import StepItem from "../steps/StepItem";
 import "./TaskShow.css";
 
 class TaskShow extends React.Component {
@@ -33,17 +33,17 @@ class TaskShow extends React.Component {
 		if(!this.props.task || !this.props.steps) {
 			return null;
 		};
-
-		const task = this.props.task;
 		
 		return (
 			<div id="taskShow">
 				<div className="info">
-					<h1 className="title">{task.title}</h1>
-					<div className="description">{task.description}</div>
+					<h1 className="title">{this.props.task.title}</h1>
+					<div className="description">{this.props.task.description}</div>
 				</div>
 				<div className="steps">
-					<button className="ui large blue button" onClick={() => this.props.createStep({content: "New Step"}, task._id)}>Add New Step</button>
+					<button className="ui large blue button" onClick={() => this.props.createStep({content: "New Step"}, this.props.task._id)}>
+						Add New Step
+					</button>
 					<Reorder
 						reorderId="stepList"
 						draggedClassName="dragged"

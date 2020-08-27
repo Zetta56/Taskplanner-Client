@@ -1,7 +1,7 @@
 import React from "react";
 import {reduxForm, Field} from "redux-form";
 import {connect} from "react-redux";
-import {createUser} from "../actions";
+import {createUser} from "../../actions";
 import "./UserForm.css";
 
 class Register extends React.Component {

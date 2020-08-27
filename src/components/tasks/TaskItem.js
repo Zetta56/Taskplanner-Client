@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import moment from "moment";
-import sanitize from "sanitize-html-react";
 import {updateTask, selectAccordion, deselectAccordion} from "../../actions";
 import CustomEditable from "../CustomEditable";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,9 +17,13 @@ class TaskItem extends React.Component {
 		};
 	};
 
-	onEditableSubmit = (e, type) => {
-		let sanitizedText = sanitize(e.target.textContent);
-		this.props.updateTask({[type]: sanitizedText}, this.props.task._id);
+	onCheckClick = (e) => {
+		e.stopPropagation();
+		this.props.updateTask({done: !this.props.task.done}, this.props.task._id)
+	};
+
+	onEditableSubmit = (text, type) => {
+		this.props.updateTask({[type]: text}, this.props.task._id);
 	};
 
 	renderTaskTitle = ({editDisabled, title, _id}) => {
@@ -30,13 +33,11 @@ class TaskItem extends React.Component {
 			);
 		} else {
 			return (
-				<div className="taskTitle">
 				<CustomEditable
 					text={title}
 					editDisabled={editDisabled}
 					onEditableSubmit={this.onEditableSubmit}
 					type="title" />
-				</div>
 			);
 		};
 	};
@@ -60,11 +61,28 @@ class TaskItem extends React.Component {
 		const task = this.props.task,
 			  active = this.props.selected.includes(this.props.index) ? "active" : "",
 			  editting = task.editDisabled ? "" : "editting",
-			  editIcon = task.editDisabled ? "edit" : "check";
+			  editIcon = task.editDisabled ? "edit" : "check",
+			  done = task.done ? "done" : "",
+			  dateDetails = moment(task.date).isSameOrAfter(moment(Date.now()).add(1, "week"))
+							  ? {timing: "later", message: "> 1 week from now"}
+							  : moment(task.date).isSameOrAfter(moment(Date.now()).add(3, "day"))
+								  ? {timing: "soon", message: "3-7 days from now"}
+								  : moment(task.date).isSameOrAfter(moment(Date.now()))
+								  		? {timing: "immediate", message: "< 3 days from now"}
+								  		: {timing: "late", message: "Overdue"}
 
 		return (
 			<React.Fragment>
-				<div className={`title ${active} ${editting}`} onClick={() => this.onTitleClick(this.props.index)}>
+				<div className={`title ${active} ${done || editting}`} onClick={() => this.onTitleClick(this.props.index)}>
+					<div className="dateDetails">
+						<div className={`dateColor ${done || dateDetails.timing}`} onClick={(e) => e.stopPropagation()}></div>
+						<div className={`ui left pointing ${done || dateDetails.timing} label`}>{dateDetails.message}</div>
+					</div>
+					<div className="ui checkbox">
+						<input type="checkbox" onClick={(e) => this.onCheckClick(e)} />
+						<label></label>
+					</div>
+					<div onClick={(e) => e.stopPropagation()} className={`taskTitle ${done}`}>{this.renderTaskTitle(task)}</div>
 					<div className="icons" onClick={(e) => e.stopPropagation()}>
 						<Link to={`/tasks/${task._id}/delete`} className="ui red button">
 							<i className="trash icon" />
@@ -76,10 +94,9 @@ class TaskItem extends React.Component {
 							<i className={`${editIcon} icon`} />
 						</button>
 					</div>
-					<div className="date" onClick={(e) => e.stopPropagation()}>{this.renderDate(task)}</div>
-					<div onClick={(e) => e.stopPropagation()} className="taskTitle">{this.renderTaskTitle(task)}</div>
+					<div className={`date ${done}`} onClick={(e) => e.stopPropagation()}>{this.renderDate(task)}</div>
 				</div>
-				<div className={`content ${active} ${editting}`}>
+				<div className={`content ${active} ${done || editting}`}>
 					<CustomEditable
 						text={task.description || "Enter a description here..."}
 						editDisabled={task.editDisabled}

@@ -15,15 +15,43 @@
 	word-wrap: break-word;
 }
 
+#taskList .done {
+	text-decoration: line-through;
+	text-decoration-color: #3c3c3c;
+	text-decoration-thickness: 3px;
+}
+
 .title .taskTitle {
 	display: inline-block;
+	margin-left: 10px;
 }
 
 .title .date {
 	position: absolute;
-	right: 0;
 	margin-right: 40px;
+	right: 0;
+	top: 33%;
 	transition: 200ms;
+}
+
+.dateDetails .dateColor {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	top: 0;
+	width: 10px;
+}
+
+.dateDetails .ui.label {
+	position: absolute;
+	display: none;
+	left: 10px;
+	font-size: 16px;
+	z-index: 1;
+}
+
+.title .checkbox {
+	margin: 0;
 }
 
 .title .react-datepicker__input-container input {
@@ -37,9 +65,9 @@
 .icons {
 	position: absolute;
 	direction: rtl;
-	right: 0;
     height: 100%;
-    margin-top: -25px;
+    right: 0;
+    top: 0;
     width: 130px;
 }
 
@@ -58,18 +86,18 @@
 
 /* Pseudo-Selectors */
 
-.title:hover .date {
-    right: 122px !important;
+.title:not(.done):hover .date {
+    right: 122px;
 }
 
-.title:hover .ui.button {
-    width: 65px !important;
+.title:not(.done):hover .ui.button {
+    width: 65px;
 }
 
-.title:hover .icon {
+.title:not(.done):hover .icon {
     opacity: 1 !important;
 }
 
-.react-datepicker__input-container input:focus {
-	border-color: #85b7d9 !important;
+.dateDetails:hover .ui.label {
+	display: block;
 }
