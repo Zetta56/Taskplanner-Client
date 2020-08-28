@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {fetchTasks, createTask} from "../../actions";
+import {fetchTasks, createTask, deleteInactiveTasks} from "../../actions";
 import TaskItem from "./TaskItem";
 import "./TaskList.css"
 
@@ -18,51 +18,32 @@ class TaskList extends React.Component {
 		});
 	};
 
-	renderCreateButton = () => {
-		//Displays popup if signed out user is clicking create for the first time
-		if(!this.props.isLoggedIn && !this.props.selectedCreate) {
-			return (
-				<Link to="/tasks/create" className="ui blue button">
-					<i className="plus icon"></i>
-					Create New Task
-				</Link>
-			);
-		} else {
-			return (
-				<button className="ui blue button" onClick={this.onCreateClick}>
-					<i className="plus icon"></i>
-					Create New Task
-				</button>
-			);
-		}
+	renderDeleteButton = () => {
+		if(this.props.tasks.filter(task => task.done === true).length !== 0) {
+			return <button className="ui red button" onClick={this.props.deleteInactiveTasks}>Delete Inactive Tasks</button>
+		};
 	};
 
 	renderList = () => {
-		if(!this.props.tasks) {
-			return null;
-		};
-
 		return this.props.tasks.map((task, index) => {
-			return (
-				<TaskItem task={task} index={index} key={task._id} />
-			);
+			return <TaskItem task={task} index={index} key={task._id} />
 		});
 	};
 
 	renderAccordion = () => {
-		if(this.props.tasks.length !== 0) {
-			return (
-				<div className="ui styled accordion">
-					{this.renderList()}
-				</div>
-			);
+		if(this.props.tasks && this.props.tasks.length !== 0) {
+			return <div className="ui styled accordion">{this.renderList()}</div>
 		};
 	};
 
 	render() {
 		return (
 			<div id="taskList">
-				{this.renderCreateButton()}
+				<button className="ui blue button" onClick={() => this.onCreateClick()}>
+					<i className="plus icon"></i>
+					Create New Task
+				</button>
+				{this.renderDeleteButton()}
 				{this.renderAccordion()}
 			</div>
 		);
@@ -70,11 +51,7 @@ class TaskList extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-	return {
-		tasks: Object.values(state.tasks),
-		isLoggedIn: state.auth.isLoggedIn,
-		selectedCreate: state.click.createButton
-	};
+	return {tasks: Object.values(state.tasks), isLoggedIn: state.auth.isLoggedIn};
 };
 
-export default connect(mapStateToProps, {fetchTasks, createTask})(TaskList);
+export default connect(mapStateToProps, {fetchTasks, createTask, deleteInactiveTasks})(TaskList);

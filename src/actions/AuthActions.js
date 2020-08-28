@@ -1,7 +1,6 @@
 import express from "../api/express";
 import history from "../history";
 import {error} from "./index";
-import {fetchTasks} from "./TaskActions";
 
 export const createUser = (formValues) => {
 	return async (dispatch) => {
@@ -50,10 +49,8 @@ export const logout = (initial) => {
 			type: "LOGOUT",
 		});
 
-		dispatch(fetchTasks());
-
 		if(!initial) {
-			history.push("/");
+			history.push("/login");
 		};
 	};
 };

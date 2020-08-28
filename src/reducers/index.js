@@ -4,7 +4,7 @@ import ErrorReducer from "./ErrorReducer";
 import AuthReducer from "./AuthReducer";
 import TaskReducer from "./TaskReducer";
 import StepReducer from "./StepReducer";
-import ClickReducer from "./ClickReducer";
+import AccordionReducer from "./AccordionReducer";
 
 export default combineReducers({
 	form: FormReducer,
@@ -12,5 +12,5 @@ export default combineReducers({
 	auth: AuthReducer,
 	tasks: TaskReducer,
 	steps: StepReducer,
-	click: ClickReducer
+	accordion: AccordionReducer
 });

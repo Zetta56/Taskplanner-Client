@@ -12,8 +12,13 @@ class TaskShow extends React.Component {
 
 	componentDidMount() {
 		const fetchResources = async () => {
-			await this.props.fetchTask(this.props.match.params.id);
-			await this.props.fetchSteps(this.props.match.params.id);
+			try {
+				await this.props.fetchTask(this.props.match.params.id);
+				await this.props.fetchSteps(this.props.match.params.id);
+			} catch(err) {
+				// Stops function to prevent unwanted error messages
+				return;
+			}
 		};
 
 		fetchResources();

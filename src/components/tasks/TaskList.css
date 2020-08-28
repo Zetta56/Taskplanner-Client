@@ -1,3 +1,7 @@
+#taskList > .ui.button {
+	height: 38px;
+}
+
 #taskList .ui.styled.accordion {
 	font-size: 20px;
 	margin-top: 20px;

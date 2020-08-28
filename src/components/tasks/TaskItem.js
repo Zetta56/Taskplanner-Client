@@ -109,7 +109,7 @@ class TaskItem extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-	return {selected: state.click.accordion};
+	return {selected: state.accordion};
 };
 
 export default connect(mapStateToProps, {updateTask, selectAccordion, deselectAccordion})(TaskItem);

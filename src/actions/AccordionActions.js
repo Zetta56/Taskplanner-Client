@@ -11,9 +11,3 @@ export const deselectAccordion = (index) => {
 		payload: index
 	};
 };
-
-export const selectCreate = () => {
-	return {
-		type: "SELECT_CREATE"
-	};
-};
