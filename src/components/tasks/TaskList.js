@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {fetchTasks, createTask, deleteInactiveTasks} from "../../actions";
+import {fetchTasks, createTask} from "../../actions";
 import TaskItem from "./TaskItem";
 import "./TaskList.css"
 
@@ -20,7 +20,7 @@ class TaskList extends React.Component {
 
 	renderDeleteButton = () => {
 		if(this.props.tasks.filter(task => task.done === true).length !== 0) {
-			return <button className="ui red button" onClick={this.props.deleteInactiveTasks}>Delete Inactive Tasks</button>
+			return <Link to="/tasks/completed/delete" className="ui red button">Delete Completed Tasks</Link>
 		};
 	};
 
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
 	return {tasks: Object.values(state.tasks), isLoggedIn: state.auth.isLoggedIn};
 };
 
-export default connect(mapStateToProps, {fetchTasks, createTask, deleteInactiveTasks})(TaskList);
+export default connect(mapStateToProps, {fetchTasks, createTask})(TaskList);

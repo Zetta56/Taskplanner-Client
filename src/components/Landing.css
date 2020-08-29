@@ -1,0 +1,44 @@
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+#landing {
+	animation: 2s fadeIn;
+}
+
+#landing .header {
+	margin-bottom: 5%;
+	padding: 30px 5%;
+	text-align: center;
+}
+
+#landing .header h1 {
+	font-size: 42px;
+	margin-bottom: 30px;
+}
+
+#landing .header p {
+	font-size: 24px;
+}
+
+/* Overriding Semantic UI Styles */
+#landing .segment {
+	background-color: transparent;
+}
+
+#landing #userForm {
+	margin: 0;
+}
+
+#landing #userForm .eight.wide.column {
+	width: 100% !important;
+}
+
+#landing .login .registerMessage {
+	display: none;
+}

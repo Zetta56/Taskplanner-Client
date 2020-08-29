@@ -15,6 +15,12 @@
 	outline: 0;
 }
 
+.done {
+	text-decoration: line-through;
+	text-decoration-color: #3c3c3c;
+	text-decoration-thickness: 3px;
+}
+
 /* Colors */
 
 body {
@@ -37,10 +43,16 @@ body {
 }
 
 #taskList .late,
-#taskList .ui.styled.accordion .done {
+#taskList .ui.styled.accordion .done,
+#taskShow .stepItem.done {
 	background-color: #818181;	/*light gray*/
 }
 
+#userForm ::placeholder {
+	color: #818181;		/*light gray*/
+}
+
+#userForm input,
 #taskList input {
 	background-color: #D7D7D7;	/*lighter gray*/
 }

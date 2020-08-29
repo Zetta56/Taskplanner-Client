@@ -8,6 +8,8 @@ export default (state = [], action) => {
 			return [...state.map(step => step._id === action.payload._id ? action.payload : step)]
 		case "DELETE_STEP":
 			return [...state.filter(step => step._id !== action.payload)];
+		case "DELETE_STEPS":
+			return [...state.filter(step => step._id !== null)];
 		default:
 			return state;
 	};

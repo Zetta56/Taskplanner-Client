@@ -12,7 +12,7 @@ export const fetchTasks = () => {
 				payload: response.data
 			});
 		} catch(err) {
-			await history.push(err.response.data.redirect || "/");
+			await history.push(err.response.data.redirect);
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
 	};
@@ -28,7 +28,7 @@ export const createTask = (formValues) => {
 				payload: response.data
 			});
 		} catch(err) {
-			await history.push(err.response.data.redirect || "/");
+			await history.push(err.response.data.redirect || "/tasks");
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
 	};
@@ -44,7 +44,7 @@ export const fetchTask = (taskId) => {
 				payload: response.data
 			});
 		} catch(err) {
-			await history.push(err.response.data.redirect || "/");
+			await history.push(err.response.data.redirect || "/tasks");
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
 	};
@@ -60,7 +60,7 @@ export const updateTask = (formValues, taskId) => {
 				payload: response.data
 			});
 		} catch(err) {
-			await history.push(err.response.data.redirect || "/");
+			await history.push(err.response.data.redirect || "/tasks");
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
 	};
@@ -76,27 +76,27 @@ export const deleteTask = (taskId) => {
 				payload: response.data
 			});
 
-			history.push("/");
+			history.push("/tasks");
 		} catch(err) {
-			await history.push(err.response.data.redirect || "/");
+			await history.push(err.response.data.redirect || "/tasks");
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
 	};
 };
 
-export const deleteInactiveTasks = () => {
+export const deleteCompletedTasks = () => {
 	return async (dispatch) => {
 		try {
-			const response = await express.delete("/tasks/inactive");
+			const response = await express.delete("/tasks/completed");
 
 			dispatch({
 				type: "DELETE_TASKS",
 				payload: response.data
 			});
 
-			history.push("/");
+			history.push("/tasks");
 		} catch(err) {
-			await history.push(err.response.data.redirect || "/");
+			await history.push(err.response.data.redirect || "/tasks");
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
 	};

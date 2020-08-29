@@ -14,7 +14,7 @@ class TaskDelete extends React.Component {
 		return (
 			<React.Fragment>
 				<button className="ui primary button" onClick={() => this.props.deleteTask(this.props.match.params.id)}>Confirm</button>
-				<Link to="/" className="ui button" style={{border: "1px solid gray"}}>Cancel</Link>
+				<Link to="/tasks" className="ui button" style={{border: "1px solid gray"}}>Cancel</Link>
 			</React.Fragment>
 		);
 	};
@@ -28,7 +28,7 @@ class TaskDelete extends React.Component {
 				header="Confim Deletion"
 				content={`Are you sure you want to delete '${this.props.task.title}'?`}
 				buttons={this.renderButtons()}
-				onDismiss={() => history.push("/")} />
+				onDismiss={() => history.push("/tasks")} />
 		);
 	}
 };

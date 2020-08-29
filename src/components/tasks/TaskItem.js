@@ -17,28 +17,19 @@ class TaskItem extends React.Component {
 		};
 	};
 
-	onCheckClick = (e) => {
-		e.stopPropagation();
-		this.props.updateTask({done: !this.props.task.done}, this.props.task._id)
-	};
-
-	onEditableSubmit = (text, type) => {
-		this.props.updateTask({[type]: text}, this.props.task._id);
+	onEditSubmit = () => {
+		this.props.updateTask({editDisabled: !this.props.task.editDisabled}, this.props.task._id);
 	};
 
 	renderTaskTitle = ({editDisabled, title, _id}) => {
 		if(editDisabled) {
-			return (
-				<Link to={`/tasks/${_id}`} onClick={(e) => e.stopPropagation()}>{title}</Link>
-			);
+			return <Link to={`/tasks/${_id}`} onClick={(e) => e.stopPropagation()}>{title}</Link>
 		} else {
-			return (
-				<CustomEditable
-					text={title}
-					editDisabled={editDisabled}
-					onEditableSubmit={this.onEditableSubmit}
-					type="title" />
-			);
+			return <CustomEditable
+						text={title || "New Task"}
+						editDisabled={editDisabled}
+						onEditableSubmit={(text, type) => this.props.updateTask({[type]: text}, this.props.task._id)}
+						type="title" />
 		};
 	};
 
@@ -73,34 +64,33 @@ class TaskItem extends React.Component {
 
 		return (
 			<React.Fragment>
-				<div className={`title ${active} ${done || editting}`} onClick={() => this.onTitleClick(this.props.index)}>
+				<div className={`title ${active} ${editting} ${done}`} onClick={() => this.onTitleClick(this.props.index)}>
 					<div className="dateDetails">
-						<div className={`dateColor ${done || dateDetails.timing}`} onClick={(e) => e.stopPropagation()}></div>
-						<div className={`ui left pointing ${done || dateDetails.timing} label`}>{dateDetails.message}</div>
+						<div className={`dateColor ${dateDetails.timing} ${done}`} onClick={(e) => e.stopPropagation()}></div>
+						<div className={`ui left pointing ${dateDetails.timing} label`}>{dateDetails.message}</div>
 					</div>
 					<div className="ui checkbox">
-						<input type="checkbox" onClick={(e) => this.onCheckClick(e)} />
+						<input
+							type="checkbox"
+							checked={task.done}
+							onChange={() => this.props.updateTask({done: !this.props.task.done}, this.props.task._id)}
+							onClick={(e) => e.stopPropagation()} />
 						<label></label>
 					</div>
-					<div onClick={(e) => e.stopPropagation()} className={`taskTitle ${done}`}>{this.renderTaskTitle(task)}</div>
+					<div onClick={(e) => e.stopPropagation()} className={`taskTitle ${done}`}>
+						{this.renderTaskTitle(task)}
+					</div>
 					<div className="icons" onClick={(e) => e.stopPropagation()}>
-						<Link to={`/tasks/${task._id}/delete`} className="ui red button">
-							<i className="trash icon" />
-						</Link>
-						<button
-							className={`ui edit button ${editting}`}
-							onClick={() => this.props.updateTask({editDisabled: !task.editDisabled}, this.props.task._id)}
-						>
-							<i className={`${editIcon} icon`} />
-						</button>
+						<Link to={`/tasks/${task._id}/delete`} className="ui red button"><i className="trash icon" /></Link>
+						<button className={`ui edit button ${editting}`} onClick={() => this.onEditSubmit()}><i className={`${editIcon} icon`} /></button>
 					</div>
 					<div className={`date ${done}`} onClick={(e) => e.stopPropagation()}>{this.renderDate(task)}</div>
 				</div>
-				<div className={`content ${active} ${done || editting}`}>
+				<div className={`content ${active} ${editting} ${done}`}>
 					<CustomEditable
 						text={task.description || "Enter a description here..."}
 						editDisabled={task.editDisabled}
-						onEditableSubmit={this.onEditableSubmit}
+						onEditableSubmit={(text, type) => this.props.updateTask({[type]: text}, this.props.task._id)}
 						type="description" />
 				</div>
 			</React.Fragment>

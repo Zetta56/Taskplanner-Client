@@ -27,10 +27,12 @@ class Header extends React.Component {
 	};
 	
 	render() {
+		const mainPage = this.props.isLoggedIn ? "/tasks" : "/";
+
 		return (
 			<div className="ui inverted top fixed pointing menu" id="header">
 				<div className="ui container">
-					<Link to="/" className="header item">TaskPlanner</Link>
+					<Link to={mainPage} className="header item">TaskPlanner</Link>
 					<div className="inverted right menu">
 						{this.renderAuth()}
 					</div>

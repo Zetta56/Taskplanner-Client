@@ -11,8 +11,6 @@ export const createUser = (formValues) => {
 		};
 
 		dispatch(login({username: formValues.username, password: formValues.password}));
-
-		history.push("/");
 	};
 };
 
@@ -37,7 +35,7 @@ export const login = (formValues, initial) => {
 			payload: response.data
 		});
 		
-		history.push("/");
+		history.push("/tasks");
 	};
 };
 

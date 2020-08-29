@@ -19,12 +19,6 @@
 	word-wrap: break-word;
 }
 
-#taskList .done {
-	text-decoration: line-through;
-	text-decoration-color: #3c3c3c;
-	text-decoration-thickness: 3px;
-}
-
 .title .taskTitle {
 	display: inline-block;
 	margin-left: 10px;
@@ -102,6 +96,6 @@
     opacity: 1 !important;
 }
 
-.dateDetails:hover .ui.label {
+.dateDetails:hover .ui.label:not(.done) {
 	display: block;
 }

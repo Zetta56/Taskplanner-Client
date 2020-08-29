@@ -23,7 +23,7 @@ class CustomEditable extends React.Component {
 			this.props.onEditableSubmit(sanitize(e.target.textContent), this.props.type);
 		}
 
-		//Stops string at specified max
+		//Sets max length for title
 		if(e.target.textContent.length >= 50 && !deleting && this.props.type === "title") {
 			e.preventDefault();
 		};

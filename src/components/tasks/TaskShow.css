@@ -28,17 +28,26 @@
 	word-wrap: break-word;
 }
 
-.stepItem div {
+.stepItem .ui.checkbox {
+	position: absolute;
+	left: 3%;
+	/*Make this 5% for small screens*/
+	top: 40%;
+}
+
+.stepItem .content {
 	font-size: 20px;
-	margin-right: 70px;
+	margin: 0 9% 0 4%;
 }
 
 .stepItem .ui.button {
 	position: absolute;
 	height: 100%;
 	margin: 0;
+	padding: 0;
 	top: 0;
 	right: 0;
+	width: 50px;
 }
 
 .stepItem .ui.button .icon {

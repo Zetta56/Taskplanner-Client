@@ -6,11 +6,14 @@ import history from "../history";
 import {resetError, login, logout} from "../actions";
 import ProtectedRoute from "./ProtectedRoute";
 import Header from "./Header";
+import Landing from "./Landing";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import TaskList from "./tasks/TaskList";
 import TaskDelete from "./tasks/TaskDelete";
+import TaskDeleteMany from "./tasks/TaskDeleteMany";
 import TaskShow from "./tasks/TaskShow";
+import StepDeleteMany from "./steps/StepDeleteMany";
 import "./App.css";
 
 class App extends React.Component {
@@ -39,9 +42,7 @@ class App extends React.Component {
 
 	renderError() {
 		if(this.props.error) {
-			return (
-				<div className="ui negative message" id="errorMessage">{this.props.error}</div>
-			);
+			return <div className="ui negative message" id="errorMessage">{this.props.error}</div>
 		};
 	};
 	
@@ -53,11 +54,14 @@ class App extends React.Component {
 					{this.renderError()}
 					<div className="ui container">
 						<Switch>
-							<ProtectedRoute path="/" exact component={TaskList}></ProtectedRoute>
-							<ProtectedRoute path="/tasks/:id/delete" exact component={TaskDelete}></ProtectedRoute>
-							<ProtectedRoute path="/tasks/:id" exact component={TaskShow}></ProtectedRoute>
+							<Route path="/" exact component={Landing}></Route>
 							<Route path="/register" exact component={Register}></Route>
 							<Route path="/login" exact component={Login}></Route>
+							<ProtectedRoute path="/tasks" exact component={TaskList}></ProtectedRoute>
+							<ProtectedRoute path="/tasks/completed/delete" exact component={TaskDeleteMany}></ProtectedRoute>
+							<ProtectedRoute path="/tasks/:id/steps/delete" exact component={StepDeleteMany}></ProtectedRoute>
+							<ProtectedRoute path="/tasks/:id/delete" exact component={TaskDelete}></ProtectedRoute>
+							<ProtectedRoute path="/tasks/:id" exact component={TaskShow}></ProtectedRoute>
 						</Switch>
 					</div>
 				</div>
