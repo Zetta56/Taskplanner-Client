@@ -1,16 +1,3 @@
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-#landing {
-	animation: 2s fadeIn;
-}
-
 #landing .header {
 	margin-bottom: 5%;
 	padding: 30px 5%;
@@ -26,7 +13,7 @@
 	font-size: 24px;
 }
 
-/* Overriding Semantic UI Styles */
+/*Overriding Semantic UI Styles*/
 #landing .segment {
 	background-color: transparent;
 }
@@ -41,4 +28,35 @@
 
 #landing .login .registerMessage {
 	display: none;
+}
+
+/*Responsive Styles*/
+@media only screen and (max-width: 992px) {
+	#landing .middle.aligned.column {
+		width: 100%;
+	}
+
+	#landing .vertical.divider {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 993px) {
+	#landing .horizontal.divider {
+		display: none;
+	}
+}
+
+/*Animations*/
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+#landing {
+	animation: 2s fadeIn;
 }

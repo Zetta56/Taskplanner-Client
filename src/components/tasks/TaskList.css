@@ -9,27 +9,13 @@
 }
 
 #taskList .title {
-	line-height: 1.2;
-	padding: 25px 0px 25px 40px;
 	position: relative;
+	padding: 25px 0px 25px 40px;
 }
 
 #taskList .content {
 	padding: 20px 40px;
 	word-wrap: break-word;
-}
-
-.title .taskTitle {
-	display: inline-block;
-	margin-left: 10px;
-}
-
-.title .date {
-	position: absolute;
-	margin-right: 40px;
-	right: 0;
-	top: 33%;
-	transition: 200ms;
 }
 
 .dateDetails .dateColor {
@@ -43,18 +29,38 @@
 .dateDetails .ui.label {
 	position: absolute;
 	display: none;
-	left: 10px;
 	font-size: 16px;
+	left: 10px;
 	z-index: 1;
 }
 
+.dateDetails:hover .ui.label:not(.done) {
+	display: block;
+}
+
 .title .checkbox {
-	margin: 0;
+	position: absolute;
+	left: 3%;
+	top: calc(50% - 9px);
+}
+
+.title .taskTitle {
+	margin-left: 3%;
+	width: 65%;
+	word-wrap: break-word;
+}
+
+.title .date {
+	position: absolute;
+	margin-right: 40px;
+	right: 0;
+	top: calc(50% - 10px);
+	transition: 200ms;
 }
 
 .title .react-datepicker__input-container input {
 	border-radius: .3rem;
-	margin-top: -12px;
+	margin-top: -15px;
 	outline: 0;
 	padding: .6em .8em;
 	width: 140px;
@@ -71,10 +77,18 @@
 
 .icons .ui.button {
 	border-radius: 0;
+	height: 100%;
 	margin: 0;
-	padding: 28px 0;
+	padding: 0;
 	width: 0;
 	transition: 200ms;
+}
+
+.icons .ui.red.button a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
 .icons .ui.button .icon {
@@ -82,20 +96,85 @@
 	opacity: 0;
 }
 
-/* Pseudo-Selectors */
-
-.title:not(.done):hover .date {
-    right: 122px;
+.ui.show.button {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin-right: 0;
+	right: 0;
+	width: 40px;
+	top: 0;
+	transition: 200ms;
 }
 
-.title:not(.done):hover .ui.button {
-    width: 65px;
+.showRight {
+	display: none;
 }
 
-.title:not(.done):hover .icon {
-    opacity: 1 !important;
+/*Responsive Styles*/
+@media only screen and (max-width: 1200px) {
+	.title .taskTitle {
+		width: 60%;
+	}
 }
 
-.dateDetails:hover .ui.label:not(.done) {
-	display: block;
+@media only screen and (min-width: 992px) {
+	.title:not(.done):hover .date {
+	    right: 120px;
+	}
+
+	.title:not(.done):hover .ui.button {
+	    width: 65px;
+	}
+
+	.title:not(.done):hover .icon {
+	    opacity: 1;
+	}
+
+	.ui.show.button {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.title .checkbox {
+		left: 4%;
+	}
+
+	.title .taskTitle {
+		width: 80%;
+	}
+
+	.title .date,
+	.title .icons {
+		right: -50%;
+	}
+
+	.showRight:checked ~ .ui.show.button {
+		padding-right: calc(100% - 21px);
+	}
+
+	.showRight:checked ~ .date {
+		right: 120px;
+	}
+
+	.showRight:checked ~ .icons {
+		right: 0;
+	}
+
+	.showRight:checked ~ .icons .ui.button {
+		width: 65px;
+	}
+
+	.showRight:checked ~ .icons .icon {
+	    opacity: 1;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.title .checkbox {
+		left: 5%;
+	}
 }

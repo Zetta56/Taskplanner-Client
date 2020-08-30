@@ -4,11 +4,19 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from "redux-thunk";
 
+import express from "./api/express";
 import reducers from "./reducers";
 import App from "./components/App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+const refresh = store => next => async (action) => {
+	if(!window.cooldown) {
+		await express.post("/refresh");
+		window.cooldown = true;
+	};
+	next(action);
+};
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk, refresh)));
 
 ReactDOM.render(
 	<Provider store={store}>

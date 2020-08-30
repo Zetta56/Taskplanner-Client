@@ -15,7 +15,13 @@
 	outline: 0;
 }
 
-.done {
+/*Common Styles*/
+
+div[contenteditable="true"] {
+	outline: 0;
+}
+
+.done div {
 	text-decoration: line-through;
 	text-decoration-color: #3c3c3c;
 	text-decoration-thickness: 3px;
@@ -42,6 +48,7 @@ body {
 	background-color: #3c3c3c;	/*gray*/
 }
 
+#taskList .ui.show.button,
 #taskList .late,
 #taskList .ui.styled.accordion .done,
 #taskShow .stepItem.done {
@@ -60,32 +67,32 @@ body {
 body,
 #taskList .taskTitle,
 #taskList .date span,
-#taskList .ui.edit.button,
+#taskList .icon,
 #taskList .ui.label {
 	color: #EDEDED;		/*white-ish*/
 }
 
-#taskList .immediate,
+.dateDetails .immediate,
 .ui.red.button {
 	background-color: #e74c3e;	/*red*/
 }
 
-#taskList .soon,
+.dateDetails .soon,
 .ui.edit.button {
 	background-color: #f0a400;	/*yellow*/
 }
 
-#taskList .later,
-.ui.edit.button.editting {
+.dateDetails .later,
+.editting .ui.edit.button {
 	background-color: #55b83e;	/*green*/
 }
 
-#taskList .content.editting,
+#taskList .editting.content,
 #taskShow .placeholder .stepItem {
 	background-color: #32475d; /*darker blue*/
 }
 
-#taskList .title.editting {
+#taskList .editting.title {
 	background-color: #42576d; /*dark blue*/
 }
 
@@ -93,8 +100,7 @@ body,
 	background-color: #589de0;	/*blue*/
 }
 
-#userForm .registerMessage a,
-.title .taskTitle a {
+a {
 	color: #6ab0f3;		/*light-blue*/
 }
 

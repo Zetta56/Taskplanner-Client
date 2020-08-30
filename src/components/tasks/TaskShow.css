@@ -54,3 +54,23 @@
 	font-size: 20px;
 	margin: 0;
 }
+
+@media only screen and (max-width: 992px) {
+	.stepItem {
+		width: 100%;
+	}
+
+	.stepItem .ui.checkbox {
+		left: 4%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.stepItem .ui.checkbox {
+		left: 5%;
+	}
+
+	.stepItem .ui.button {
+		width: 35px;
+	}
+}

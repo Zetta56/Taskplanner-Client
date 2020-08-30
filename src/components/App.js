@@ -19,8 +19,6 @@ import "./App.css";
 class App extends React.Component {
 	componentDidMount() {
 		history.listen(async (location) => {
-			await express.post("/refresh");
-
 			if(this.props.error) {
 				this.props.resetError();
 			};
@@ -38,6 +36,9 @@ class App extends React.Component {
 		};
 
 		initialAuth();
+
+		window.cooldown = false;
+		window.setInterval(() => window.cooldown = false, 180000);
 	};
 
 	renderError() {
@@ -72,6 +73,6 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {error: state.error.message}
-}
+};
 
 export default connect(mapStateToProps, {resetError, login, logout})(App);

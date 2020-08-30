@@ -18,11 +18,12 @@ class StepItem extends React.Component {
 				    	<div className="middle aligned column">
 				      		<span className="login"><Login /></span>
 				    	</div>
+				    	<div className="ui inverted horizontal divider">Or</div>
+				    	<div className="ui inverted vertical divider">Or</div>
 					    <div className="middle aligned column">
 					      	<span className="register"><Register /></span>
 					    </div>
 					</div>
-					<div className="ui inverted vertical divider">Or</div>
 				</div>
 			</div>
 		);
