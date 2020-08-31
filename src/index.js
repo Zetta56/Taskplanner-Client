@@ -10,9 +10,9 @@ import App from "./components/App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const refresh = store => next => async (action) => {
-	if(!window.cooldown) {
+	if(!window.refreshCooldown) {
 		await express.post("/refresh");
-		window.cooldown = true;
+		window.refreshCooldown = true;
 	};
 	next(action);
 };

@@ -38,8 +38,8 @@ class Register extends React.Component {
 		return (
 			<div className="ui one column stackable grid" id="userForm">
 				<div className="eight wide column">
+					<h2>Create An Account</h2>
 					<form className="ui form" onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
-						<h2>Create An Account</h2>
 						<Field name="email" component={this.renderInput} placeholder="Email" inputType="text" />
 						<Field name="username" component={this.renderInput} placeholder="Username" inputType="text" />
 						<Field name="password" component={this.renderInput} placeholder="Password" inputType="password" />

@@ -15,47 +15,33 @@
 
 #taskList .content {
 	padding: 20px 40px;
-	word-wrap: break-word;
 }
 
 .dateDetails .dateColor {
-	position: absolute;
-	height: 100%;
 	left: 0;
-	top: 0;
 	width: 10px;
 }
 
 .dateDetails .ui.label {
-	position: absolute;
 	display: none;
 	font-size: 16px;
 	left: 10px;
 	z-index: 1;
 }
 
-.dateDetails:hover .ui.label:not(.done) {
-	display: block;
-}
-
 .title .checkbox {
-	position: absolute;
 	left: 3%;
 	top: calc(50% - 9px);
 }
 
 .title .taskTitle {
 	margin-left: 3%;
-	width: 65%;
-	word-wrap: break-word;
+	max-width: 65%;
 }
 
 .title .date {
-	position: absolute;
 	margin-right: 40px;
-	right: 0;
 	top: calc(50% - 10px);
-	transition: 200ms;
 }
 
 .title .react-datepicker__input-container input {
@@ -66,51 +52,26 @@
 	width: 140px;
 }
 
-.icons {
-	position: absolute;
+.title .ui.show.button {
+	border-radius: 0;
+	margin-right: 0;
+	width: 40px;
+}
+
+.title .icons {
 	direction: rtl;
-    height: 100%;
-    right: 0;
-    top: 0;
     width: 130px;
 }
 
 .icons .ui.button {
 	border-radius: 0;
-	height: 100%;
-	margin: 0;
 	padding: 0;
 	width: 0;
-	transition: 200ms;
-}
-
-.icons .ui.red.button a {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
 }
 
 .icons .ui.button .icon {
 	font-size: 20px;
 	opacity: 0;
-}
-
-.ui.show.button {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	margin-right: 0;
-	right: 0;
-	width: 40px;
-	top: 0;
-	transition: 200ms;
-}
-
-.showRight {
-	display: none;
 }
 
 /*Responsive Styles*/
@@ -133,12 +94,16 @@
 	    opacity: 1;
 	}
 
-	.ui.show.button {
+	.title .ui.show.button {
 		display: none;
 	}
 }
 
 @media only screen and (max-width: 992px) {
+	.done .ui.show.button {
+		display: none;
+	}
+	
 	.title .checkbox {
 		left: 4%;
 	}
@@ -148,28 +113,29 @@
 	}
 
 	.title .date,
-	.title .icons {
-		right: -50%;
+	.title .icons,
+	.showBox:checked ~ .taskItemLeft {
+		opacity: 0;
+		pointer-events: none;
 	}
 
-	.showRight:checked ~ .ui.show.button {
+	.showBox:checked ~ .ui.show.button {
 		padding-right: calc(100% - 21px);
 	}
 
-	.showRight:checked ~ .date {
+	.showBox:checked ~ .taskItemRight .date {
 		right: 120px;
 	}
 
-	.showRight:checked ~ .icons {
-		right: 0;
-	}
-
-	.showRight:checked ~ .icons .ui.button {
+	.showBox:checked ~ .taskItemRight .icons .ui.button {
 		width: 65px;
 	}
 
-	.showRight:checked ~ .icons .icon {
-	    opacity: 1;
+	.showBox:checked ~ .taskItemRight .date,
+	.showBox:checked ~ .taskItemRight .icons,
+	.showBox:checked ~ .taskItemRight .icons .icon {
+		opacity: 1;
+		pointer-events: auto;
 	}
 }
 

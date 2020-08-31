@@ -1,7 +1,6 @@
 #landing .header {
 	margin-bottom: 5%;
 	padding: 30px 5%;
-	text-align: center;
 }
 
 #landing .header h1 {
@@ -18,16 +17,8 @@
 	background-color: transparent;
 }
 
-#landing #userForm {
-	margin: 0;
-}
-
 #landing #userForm .eight.wide.column {
 	width: 100% !important;
-}
-
-#landing .login .registerMessage {
-	display: none;
 }
 
 /*Responsive Styles*/

@@ -33,20 +33,16 @@ class TaskItemLeft extends React.Component {
 		};
 	};
 	render() {
-		const task = this.props.task,
-			  done = task.done ? "done" : "";
+		const task = this.props.task;
 
 		return (
 			<span className="taskItemLeft" onClick={(e) => e.stopPropagation()}>
 				<div className="dateDetails">
 					<div className={`dateColor ${this.getDateDetails().urgency}`}></div>
-					<div className={`ui left pointing ${this.getDateDetails().urgency} label ${done}`}>{this.getDateDetails().message}</div>
+					<div className={`ui left pointing ${this.getDateDetails().urgency} label`}>{this.getDateDetails().message}</div>
 				</div>
 				<div className="ui checkbox">
-					<input
-						type="checkbox"
-						checked={task.done}
-						onChange={() => this.props.updateTask({done: !task.done}, task._id)} />
+					<input type="checkbox" checked={task.done} onChange={() => this.props.updateTask({done: !task.done}, task._id)} />
 					<label></label>
 				</div>
 				<div className="taskTitle">{this.renderTaskTitle(task)}</div>

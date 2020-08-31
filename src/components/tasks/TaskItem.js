@@ -22,18 +22,6 @@ class TaskItem extends React.Component {
 		this.props.updateTask({editDisabled: !this.props.task.editDisabled}, this.props.task._id);
 	};
 
-	renderTaskTitle = ({editDisabled, title, _id}) => {
-		if(editDisabled) {
-			return <Link to={`/tasks/${_id}`} onClick={(e) => e.stopPropagation()}>{title}</Link>
-		} else {
-			return <CustomEditable
-						text={title || "New Task"}
-						editDisabled={editDisabled}
-						onEditableSubmit={(text, type) => this.props.updateTask({[type]: text}, this.props.task._id)}
-						type="title" />
-		};
-	};
-
 	renderDate = ({editDisabled, date}) => {
 		if(editDisabled) {
 			return <span>{moment(date).format("MMM DD, YYYY")}</span>
@@ -59,11 +47,11 @@ class TaskItem extends React.Component {
 		return (
 			<React.Fragment>
 				<div className={`title ${active} ${editting} ${done}`} onClick={() => this.onTitleClick(this.props.index)}>
+					<input type="checkbox" id={`showRight ${task._id}`} className="showBox" />
+					<label htmlFor={`showRight ${task._id}`} className="ui show button"><i className="chevron left icon"></i></label>
 					<TaskItemLeft task={task} />
 					<span className="taskItemRight" onClick={(e) => e.stopPropagation()}>
-						<input type="checkbox" id={`showRight ${task._id}`} className="showRight" />
-						<label htmlFor={`showRight ${task._id}`} className="ui show button"><i className="chevron left icon"></i></label>
-						<div className={`date ${done}`}>{this.renderDate(task)}</div>
+						<div className="date">{this.renderDate(task)}</div>
 						<div className="icons">
 							<button className="ui red button"><Link to={`/tasks/${task._id}/delete`}><i className="trash icon" /></Link></button>
 							<button className="ui edit button" onClick={() => this.onEditSubmit()}><i className={`${editIcon} icon`} /></button>

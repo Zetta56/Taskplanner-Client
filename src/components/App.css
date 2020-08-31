@@ -6,10 +6,6 @@
 	padding-top: 40px;
 }
 
-#errorMessage {
-	text-align: center;
-}
-
 #header .item {
 	font-size: 18px;
 	outline: 0;
@@ -17,8 +13,76 @@
 
 /*Common Styles*/
 
+.title .show.button,
+.icons .ui.red.button a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.title:not(.done) .dateDetails:hover .ui.label,
+.title .taskTitle {
+	display: inline-block;
+}
+
+#landing .login .registerMessage,
+.showBox,
+.steps .dragged {
+	display: none;
+}
+
+.dateDetails .dateColor,
+.title .ui.show.button,
+.title .icons,
+.icons .ui.button,
+.icons .ui.red.button a,
+.stepItem .ui.button {
+	height: 100%;
+}
+
+#landing #userForm,
+.icons .ui.button,
+.info .description,
+.stepItem .ui.button,
+.stepItem .ui.button .icon {
+	margin: 0;
+}
+
 div[contenteditable="true"] {
 	outline: 0;
+}
+
+.title .date,
+.title .icons,
+.title .ui.show.button,
+.stepItem .ui.button {
+	right: 0;
+}
+
+.dateDetails .dateColor,
+.dateDetails .ui.label,
+.title .checkbox,
+.title .date,
+.title .icons,
+.title .ui.show.button,
+.stepItem .ui.checkbox,
+.stepItem .ui.button {
+	position: absolute;
+}
+
+#errorMessage,
+#landing .header,
+.eight.wide.column h2,
+.registerMessage,
+.stepItem {
+	text-align: center;
+}
+
+.dateDetails .dateColor,
+.title .ui.show.button,
+.title .icons,
+.stepItem .ui.button {
+	top: 0;
 }
 
 .done div {
@@ -27,7 +91,22 @@ div[contenteditable="true"] {
 	text-decoration-thickness: 3px;
 }
 
-/* Colors */
+.title .date,
+.title .ui.show.button,
+.title .icons,
+.icons .ui.button {
+	transition: 200ms;
+}
+
+#taskList .content,
+.title .taskTitle,
+.info .title,
+.info .description,
+.stepItem {
+	word-wrap: break-word;
+}
+
+/*Colors*/
 
 body {
 	background-color: #202020;	/*darkest gray*/
@@ -51,17 +130,12 @@ body {
 #taskList .ui.show.button,
 #taskList .late,
 #taskList .ui.styled.accordion .done,
-#taskShow .stepItem.done {
+#taskShow .done.stepItem {
 	background-color: #818181;	/*light gray*/
 }
 
 #userForm ::placeholder {
 	color: #818181;		/*light gray*/
-}
-
-#userForm input,
-#taskList input {
-	background-color: #D7D7D7;	/*lighter gray*/
 }
 
 body,
@@ -100,11 +174,15 @@ body,
 	background-color: #589de0;	/*blue*/
 }
 
+/*Overriding Semantic UI Styles*/
+
 a {
-	color: #6ab0f3;		/*light-blue*/
+	color: #6ab0f3 !important;
 }
 
-/* Overriding Semantic UI Styles */
+input {
+	background-color: #D7D7D7 !important;
+}
 
 .icon:not(.plus) {
 	margin: 0 !important;

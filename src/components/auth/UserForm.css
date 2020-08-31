@@ -8,10 +8,6 @@
 	padding: 30px 16px;
 }
 
-.eight.wide.column h2 {
-	text-align: center;
-}
-
 .eight.wide.column .field,
 .eight.wide.column .ui.blue.button {
 	font-size: 16px;
@@ -22,7 +18,6 @@
 .registerMessage {
 	font-size: 16px;
 	margin-top: 20px;
-	text-align: center;
 }
 
 .registerMessage a {

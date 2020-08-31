@@ -18,6 +18,9 @@ import "./App.css";
 
 class App extends React.Component {
 	componentDidMount() {
+		window.refreshCooldown = false;
+		window.setInterval(() => window.refreshCooldown = false, 180000);
+		
 		history.listen(async (location) => {
 			if(this.props.error) {
 				this.props.resetError();
@@ -36,9 +39,6 @@ class App extends React.Component {
 		};
 
 		initialAuth();
-
-		window.cooldown = false;
-		window.setInterval(() => window.cooldown = false, 180000);
 	};
 
 	renderError() {

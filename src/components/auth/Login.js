@@ -22,8 +22,8 @@ class Login extends React.Component {
 		return (
 			<div className="ui one column stackable grid" id="userForm">
 				<div className="eight wide column">
+					<h2>Login</h2>
 					<form className="ui form" onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
-						<h2>Login</h2>
 						<Field name="username" component={this.renderInput} placeholder="Username" inputType="text" />
 						<Field name="password" component={this.renderInput} placeholder="Password" inputType="password" />
 						<button className="ui blue button" id="submitButton">Submit</button>
