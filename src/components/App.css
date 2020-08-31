@@ -174,11 +174,11 @@ body,
 	background-color: #589de0;	/*blue*/
 }
 
-/*Overriding Semantic UI Styles*/
-
 a {
-	color: #6ab0f3 !important;
+	color: #6ab0f3;
 }
+
+/*Overriding Semantic UI Styles*/
 
 input {
 	background-color: #D7D7D7 !important;
