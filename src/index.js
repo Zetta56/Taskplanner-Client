@@ -9,8 +9,9 @@ import reducers from "./reducers";
 import App from "./components/App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const nonCustomActions = ["@@redux-form/REGISTER_FIELD", "@@redux-form/UPDATE_SYNC_ERRORS"];
 const refresh = store => next => async (action) => {
-	if(!window.refreshCooldown) {
+	if(!window.refreshCooldown && !nonCustomActions.includes(action.type)) {
 		await express.post("/refresh");
 		window.refreshCooldown = true;
 	};
