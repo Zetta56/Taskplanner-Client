@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchTasks, createTask, selectDropdown} from "../../actions";
 import TaskItem from "./TaskItem";
-import "./TaskList.css"
-import moment from "moment"
+import "./TaskList.css";
+
 class TaskList extends React.Component {
 	componentDidMount() {
 		this.props.fetchTasks();
