@@ -1,10 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {fetchTasks, createTask} from "../../actions";
+import {fetchTasks, createTask, selectDropdown} from "../../actions";
 import TaskItem from "./TaskItem";
 import "./TaskList.css"
-
+import moment from "moment"
 class TaskList extends React.Component {
 	componentDidMount() {
 		this.props.fetchTasks();
@@ -18,21 +18,46 @@ class TaskList extends React.Component {
 		});
 	};
 
-	renderDeleteButton = () => {
-		if(this.props.tasks.filter(task => task.done === true).length !== 0) {
-			return <Link to="/tasks/completed/delete" className="ui red button">Delete Completed Tasks</Link>
-		};
+	onDropdownClick = (filter, index) => {
+		this.props.selectDropdown(index);
+		this.props.fetchTasks(filter);
 	};
 
-	renderList = () => {
+	renderListItem = () => {
 		return this.props.tasks.map((task, index) => {
 			return <TaskItem task={task} index={index} key={task._id} />
 		});
 	};
 
-	renderAccordion = () => {
+	renderDropdownItem = (filters) => {
+		return filters.map((filter, index) => {
+			return <div className="item" onClick={() => this.onDropdownClick(filter, index)} key={filter}>{filter}</div>
+		});
+	};
+
+	renderLists = () => {
 		if(this.props.tasks && this.props.tasks.length !== 0) {
-			return <div className="ui styled accordion">{this.renderList()}</div>
+			const filters = ["Alphabetical", "Newest", "Oldest"];
+
+			return (
+				<React.Fragment>
+					<div className="ui compact menu">
+						<div className="ui simple dropdown item">
+							{filters[this.props.selected] || "Sort By..."}
+							<i className="dropdown icon" />
+							<div className="menu">{this.renderDropdownItem(filters)}</div>
+						</div>
+					</div>
+					<div className="ui styled accordion">{this.renderListItem()}</div>
+				</React.Fragment>
+			)
+		};
+	};
+
+	renderDeleteButton = () => {
+		//Checks if there are any checked off tasks
+		if(this.props.tasks.filter(task => task.done === true).length !== 0) {
+			return <Link to="/tasks/completed/delete" className="ui red button">Delete Completed</Link>
 		};
 	};
 
@@ -40,18 +65,18 @@ class TaskList extends React.Component {
 		return (
 			<div id="taskList">
 				<button className="ui blue button" onClick={() => this.onCreateClick()}>
-					<i className="plus icon"></i>
+					<i className="plus icon" />
 					Create New Task
 				</button>
 				{this.renderDeleteButton()}
-				{this.renderAccordion()}
+				{this.renderLists()}
 			</div>
 		);
 	};
 };
 
 const mapStateToProps = (state) => {
-	return {tasks: Object.values(state.tasks), isLoggedIn: state.auth.isLoggedIn};
+	return {tasks: Object.values(state.tasks), isLoggedIn: state.auth.isLoggedIn, selected: state.menu.dropdown};
 };
 
-export default connect(mapStateToProps, {fetchTasks, createTask})(TaskList);
+export default connect(mapStateToProps, {fetchTasks, createTask, selectDropdown})(TaskList);

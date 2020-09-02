@@ -1,5 +1,5 @@
 import React from "react";
-import {Router, Route, Switch} from "react-router-dom";
+import {Router, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import express from "../api/express";
 import history from "../history";
@@ -55,14 +55,14 @@ class App extends React.Component {
 					{this.renderError()}
 					<div className="ui container">
 						<Switch>
-							<Route path="/" exact component={Landing}></Route>
-							<Route path="/register" exact component={Register}></Route>
-							<Route path="/login" exact component={Login}></Route>
-							<ProtectedRoute path="/tasks" exact component={TaskList}></ProtectedRoute>
-							<ProtectedRoute path="/tasks/completed/delete" exact component={TaskDeleteMany}></ProtectedRoute>
-							<ProtectedRoute path="/tasks/:id/steps/delete" exact component={StepDeleteMany}></ProtectedRoute>
-							<ProtectedRoute path="/tasks/:id/delete" exact component={TaskDelete}></ProtectedRoute>
-							<ProtectedRoute path="/tasks/:id" exact component={TaskShow}></ProtectedRoute>
+							<ProtectedRoute path="/" exact component={Landing}></ProtectedRoute>
+							<ProtectedRoute path="/register" exact component={Register}></ProtectedRoute>
+							<ProtectedRoute path="/login" exact component={Login}></ProtectedRoute>
+							<ProtectedRoute path="/tasks" exact component={TaskList} authenticate></ProtectedRoute>
+							<ProtectedRoute path="/tasks/completed/delete" exact component={TaskDeleteMany} authenticate></ProtectedRoute>
+							<ProtectedRoute path="/tasks/:id/steps/delete" exact component={StepDeleteMany} authenticate></ProtectedRoute>
+							<ProtectedRoute path="/tasks/:id/delete" exact component={TaskDelete} authenticate></ProtectedRoute>
+							<ProtectedRoute path="/tasks/:id" exact component={TaskShow} authenticate></ProtectedRoute>
 						</Switch>
 					</div>
 				</div>

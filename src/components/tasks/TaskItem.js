@@ -48,7 +48,7 @@ class TaskItem extends React.Component {
 			<React.Fragment>
 				<div className={`title ${active} ${editting} ${done}`} onClick={() => this.onTitleClick(this.props.index)}>
 					<input type="checkbox" id={`showRight ${task._id}`} className="showBox" />
-					<label htmlFor={`showRight ${task._id}`} className="ui show button"><i className="chevron left icon"></i></label>
+					<label htmlFor={`showRight ${task._id}`} className="ui show button"><i className="chevron left icon" /></label>
 					<TaskItemLeft task={task} />
 					<span className="taskItemRight" onClick={(e) => e.stopPropagation()}>
 						<div className="date">{this.renderDate(task)}</div>
@@ -71,7 +71,7 @@ class TaskItem extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-	return {selected: state.accordion};
+	return {selected: state.menu.accordion};
 };
 
 export default connect(mapStateToProps, {updateTask, selectAccordion, deselectAccordion})(TaskItem);

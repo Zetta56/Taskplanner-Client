@@ -4,19 +4,22 @@ import {Route, Redirect} from "react-router-dom";
 
 class ProtectedRoute extends React.Component {
 	render() {
-		switch(this.props.isLoggedIn) {
-			case null:
-				return null;
-			case true:
-				return <Route path={this.props.path} exact={this.props.exact} component={this.props.component}></Route>
-			default:
-				return <Redirect to="/login" />
+		const redirectUrl = this.props.isLoggedIn ? "/tasks" : "/login",
+			  //Converts this.props.authenticate from true/undefined to true/false
+			  authenticate = this.props.authenticate ? true : false;
+		
+		if(this.props.isLoggedIn === null) {
+			return null;
+		} else if(authenticate === this.props.isLoggedIn) {
+			return <Route path={this.props.path} component={this.props.component}></Route>
+		} else {
+			return <Redirect to={redirectUrl} />
 		};
 	};
 };
 
 const mapStateToProps = (state) => {
-	return {isLoggedIn: state.auth.isLoggedIn}
+	return {isLoggedIn: state.auth.isLoggedIn};
 };
 
 export default connect(mapStateToProps)(ProtectedRoute);

@@ -121,6 +121,10 @@ body {
 	background-color: #333333;	/*dark gray*/
 }
 
+#taskList .dropdown.icon {
+	color: #333333;	/*dark gray*/
+}
+
 #userForm .eight.wide.column,
 #taskList .ui.styled.accordion,
 #taskShow > div {
@@ -136,6 +140,13 @@ body {
 
 #userForm ::placeholder {
 	color: #818181;		/*light gray*/
+}
+
+#userForm input,
+#taskList .ui.compact.menu,
+#taskList .ui.compact.menu .menu,
+#taskList input {
+	background-color: #D7D7D7; /*lighter gray*/
 }
 
 body,
@@ -179,10 +190,6 @@ a {
 }
 
 /*Overriding Semantic UI Styles*/
-
-input {
-	background-color: #D7D7D7 !important;
-}
 
 .icon:not(.plus) {
 	margin: 0 !important;

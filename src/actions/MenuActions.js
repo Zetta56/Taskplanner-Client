@@ -11,3 +11,10 @@ export const deselectAccordion = (index) => {
 		payload: index
 	};
 };
+
+export const selectDropdown = (index) => {
+	return {
+		type: "SELECT_DROPDOWN",
+		payload: index
+	};
+};

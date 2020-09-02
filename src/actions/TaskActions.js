@@ -2,10 +2,10 @@ import express from "../api/express";
 import history from "../history";
 import {error} from "./index";
 
-export const fetchTasks = () => {
+export const fetchTasks = (filter) => {
 	return async (dispatch) => {
 		try {
-			const response = await express.get("/tasks");
+			const response = await express.get("/tasks", {params: {filter: filter}});
 
 			dispatch({
 				type: "FETCH_TASKS",
