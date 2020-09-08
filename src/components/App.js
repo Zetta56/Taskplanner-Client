@@ -22,12 +22,16 @@ class App extends React.Component {
 		window.setInterval(() => window.refreshCooldown = false, 180000);
 		
 		//Loads auth2 client and checks login status
-		window.gapi.load("client:auth2", () => {
-			window.gapi.client.init({
-				clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
-				scope: "email"
-			}).then(() => loadAuth());
-		});
+		if(process.env.REACT_APP_GOOGLE_CLIENTID) {
+			window.gapi.load("client:auth2", () => {
+				window.gapi.client.init({
+					clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
+					scope: "email"
+				}).then(() => loadAuth());
+			});
+		} else {
+			loadAuth();
+		};
 
 		const loadAuth = async () => {
 			await express.post("/refresh");
