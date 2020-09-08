@@ -7,7 +7,7 @@ class Header extends React.Component {
 	onLogoutClick = (e) => {
 		e.preventDefault();
 		this.props.logout();
-		if(window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
+		if(process.env.REACT_APP_GOOGLE_CLIENTID && window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
 			window.gapi.auth2.getAuthInstance().signOut();
 		};
 	};

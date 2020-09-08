@@ -35,7 +35,7 @@ class App extends React.Component {
 			
 			if(response.data) {
 				this.props.login(response.data._id);
-			} else if(window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
+			} else if(process.env.REACT_APP_GOOGLE_CLIENTID && window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
 				this.props.login({googleId: window.gapi.auth2.getAuthInstance().currentUser.get().getId()});
 			} else {
 				this.props.logout("initial");

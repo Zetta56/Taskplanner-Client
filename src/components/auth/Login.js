@@ -6,16 +6,16 @@ import {login} from "../../actions";
 import "./UserForm.css";
 
 class Login extends React.Component {
-	onGoogleClick = async () => {
-		await window.gapi.auth2.getAuthInstance().signIn();
-		this.props.login({googleToken: window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token});
-	};
-
 	renderGoogle = () => {
-		if(this.props.match && this.props.match.path === "/login") {
+		if(process.env.REACT_APP_GOOGLE_CLIENTID && this.props.match && this.props.match.path === "/login") {
+			const onGoogleClick = async () => {
+				await window.gapi.auth2.getAuthInstance().signIn();
+				this.props.login({googleToken: window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token});
+			};
+
 			return (
 				<React.Fragment>
-					<button className="googleLogin" onClick={() => this.onGoogleClick()}></button>
+					<button className="googleLogin" onClick={() => onGoogleClick()}></button>
 					<div className="ui inverted horizontal divider">Or</div>
 				</React.Fragment>
 			);
