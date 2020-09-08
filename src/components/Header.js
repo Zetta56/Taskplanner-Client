@@ -7,15 +7,16 @@ class Header extends React.Component {
 	onLogoutClick = (e) => {
 		e.preventDefault();
 		this.props.logout();
+		if(window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
+			window.gapi.auth2.getAuthInstance().signOut();
+		};
 	};
 
 	renderAuth = () => {
 		if(this.props.isLoggedIn === null) {
 			return;
 		} else if(this.props.isLoggedIn) {
-			return (
-				<Link to="/" className="item" onClick={(e) => this.onLogoutClick(e)}>Logout</Link>
-			);
+			return <Link to="/" className="item" onClick={(e) => this.onLogoutClick(e)}>Logout</Link>
 		} else {
 			return (
 				<React.Fragment>

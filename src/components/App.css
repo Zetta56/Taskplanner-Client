@@ -8,7 +8,6 @@
 
 #header .item {
 	font-size: 18px;
-	outline: 0;
 }
 
 /*Common Styles*/
@@ -40,7 +39,7 @@
 	height: 100%;
 }
 
-#landing #userForm,
+#landing .userForm,
 .icons .ui.button,
 .info .description,
 .stepItem .ui.button,
@@ -48,7 +47,8 @@
 	margin: 0;
 }
 
-div[contenteditable="true"] {
+div[contenteditable="true"],
+#header .item {
 	outline: 0;
 }
 
@@ -125,7 +125,7 @@ body {
 	color: #333333;	/*dark gray*/
 }
 
-#userForm .eight.wide.column,
+.userForm .eight.wide.column,
 #taskList .ui.styled.accordion,
 #taskShow > div {
 	background-color: #3c3c3c;	/*gray*/
@@ -138,15 +138,15 @@ body {
 	background-color: #818181;	/*light gray*/
 }
 
-#userForm ::placeholder {
+.userForm .eight.wide.column ::placeholder {
 	color: #818181;		/*light gray*/
 }
 
-#userForm input,
+.userForm .eight.wide.column .field,
 #taskList .ui.compact.menu,
 #taskList .ui.compact.menu .menu,
 #taskList input {
-	background-color: #D7D7D7; /*lighter gray*/
+	background-color: #d7d7d7; /*lighter gray*/
 }
 
 body,
@@ -154,7 +154,7 @@ body,
 #taskList .date span,
 #taskList .icon,
 #taskList .ui.label {
-	color: #EDEDED;		/*white-ish*/
+	color: #ededed;		/*white-ish*/
 }
 
 .dateDetails .immediate,

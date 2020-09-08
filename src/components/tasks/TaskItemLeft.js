@@ -12,6 +12,7 @@ class TaskItemLeft extends React.Component {
 			{number: 3, unit: "day", urgency: "soon", message: "3-7 days from now"},
 			{number: 0, unit: "day", urgency: "immediate", message: "< 3 days from now"}
 		];
+		//No forEach loop to avoid function scoped return statement
 		for(let i = 0; i < dateDetails.length; i++) {
 			const {number, unit, urgency, message} = dateDetails[i];
 			if(moment(this.props.task.date).isSameOrAfter(moment(Date.now()).add(number, unit))) {

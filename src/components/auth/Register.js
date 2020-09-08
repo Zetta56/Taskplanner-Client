@@ -17,9 +17,7 @@ class Register extends React.Component {
 
 	renderError = ({touched, error}) => {
 		if(touched && error) {
-			return (
-				<div className="ui red pointing label">{error}</div>
-			)
+			return <div className="ui middle red pointing label">{error}</div>
 		};
 	};
 
@@ -27,16 +25,16 @@ class Register extends React.Component {
 		const error = meta.error && meta.touched ? "error " : "";
 		
 		return (
-			<div className={`${error} field`}>
-				<input {...input}  type={inputType} placeholder={placeholder} />
+			<React.Fragment>
+				<input {...input}  type={inputType} placeholder={placeholder} className={`${error} field`} />
 				{this.renderError(meta)}
-			</div>
+			</React.Fragment>
 		);
 	};
 	
 	render() {
 		return (
-			<div className="ui one column stackable grid" id="userForm">
+			<div className="userForm ui one column stackable grid">
 				<div className="eight wide column">
 					<h2>Create An Account</h2>
 					<form className="ui form" onSubmit={this.props.handleSubmit(this.onFormSubmit)}>

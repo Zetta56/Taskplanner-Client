@@ -14,14 +14,15 @@ export const createUser = (formValues) => {
 	};
 };
 
-export const login = (formValues, initial) => {
+export const login = (formValues) => {
 	//Accessed on initial app render
-	if(initial) {
+	if(!formValues.password && !formValues.googleToken) {
 		return {
 			type: "LOGIN",
 			payload: formValues
-		};
+		}
 	};
+
 	//Accessed from login form
 	return async (dispatch) => {
 		try {

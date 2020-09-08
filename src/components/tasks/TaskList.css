@@ -1,33 +1,35 @@
-#taskList > .ui.button,
-#taskList > .ui.compact.menu {
+.listButtons .ui.button,
+.listButtons .ui.compact.menu {
 	height: 38px;
+	margin-right: 5px;
+	vertical-align: middle;
 }
 
-#taskList > .ui.button,
-#taskList > .ui.compact.menu .ui.simple.dropdown {
+.listButtons .ui.button,
+.listButtons .ui.simple.dropdown {
 	padding: 11px 10px;
 }
 
-#taskList > .ui.compact.menu {
+.listButtons .ui.compact.menu {
 	min-height: 38px;
 }
 
-#taskList > .ui.compact.menu .icon {
+#taskList .listButtons .dropdown.icon {
 	padding-left: 8px;
 }
 
-#taskList .ui.styled.accordion {
+.ui.styled.accordion {
 	font-size: 20px;
 	margin-top: 20px;
 	width: 100%;
 }
 
-#taskList .title {
+.ui.styled.accordion .title {
 	position: relative;
 	padding: 25px 0px 25px 40px;
 }
 
-#taskList .content {
+.ui.styled.accordion .content {
 	padding: 20px 40px;
 }
 
@@ -160,6 +162,11 @@
 }
 
 @media only screen and (max-width: 600px) {
+	.listButtons {
+		display: flex;
+		justify-content: center;
+	}
+	
 	.title .checkbox {
 		left: 5%;
 	}

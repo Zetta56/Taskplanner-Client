@@ -37,20 +37,7 @@ class TaskList extends React.Component {
 
 	renderLists = () => {
 		if(this.props.tasks && this.props.tasks.length !== 0) {
-			const filters = ["Alphabetical", "Newest", "Oldest"];
-
-			return (
-				<React.Fragment>
-					<div className="ui compact menu">
-						<div className="ui simple dropdown item">
-							{filters[this.props.selected] || "Sort By..."}
-							<i className="dropdown icon" />
-							<div className="menu">{this.renderDropdownItem(filters)}</div>
-						</div>
-					</div>
-					<div className="ui styled accordion">{this.renderListItem()}</div>
-				</React.Fragment>
-			)
+			return <div className="ui styled accordion">{this.renderListItem()}</div>
 		};
 	};
 
@@ -62,13 +49,24 @@ class TaskList extends React.Component {
 	};
 
 	render() {
+		const filters = ["Alphabetical", "Newest", "Oldest"];
+
 		return (
 			<div id="taskList">
-				<button className="ui blue button" onClick={() => this.onCreateClick()}>
-					<i className="plus icon" />
-					Create New Task
-				</button>
-				{this.renderDeleteButton()}
+				<div className="listButtons">
+					<button className="ui blue button" onClick={() => this.onCreateClick()}>
+						<i className="plus icon" />
+						Create New Task
+					</button>
+					<div className="ui compact menu">
+						<div className="ui simple dropdown item">
+							{filters[this.props.selected] || "Sort By..."}
+							<i className="dropdown icon" />
+							<div className="menu">{this.renderDropdownItem(filters)}</div>
+						</div>
+					</div>
+					{this.renderDeleteButton()}
+				</div>
 				{this.renderLists()}
 			</div>
 		);

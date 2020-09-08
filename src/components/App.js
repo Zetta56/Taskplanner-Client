@@ -21,24 +21,33 @@ class App extends React.Component {
 		window.refreshCooldown = false;
 		window.setInterval(() => window.refreshCooldown = false, 180000);
 		
+		//Loads auth2 client and checks login status
+		window.gapi.load("client:auth2", () => {
+			window.gapi.client.init({
+				clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
+				scope: "email"
+			}).then(() => loadAuth());
+		});
+
+		const loadAuth = async () => {
+			await express.post("/refresh");
+			const response = await express.get("/access");
+			
+			if(response.data) {
+				this.props.login(response.data._id);
+			} else if(window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
+				this.props.login({googleId: window.gapi.auth2.getAuthInstance().currentUser.get().getId()});
+			} else {
+				this.props.logout("initial");
+			};
+		};
+		
+		//Removes error messages upon navigation
 		history.listen(async (location) => {
 			if(this.props.error) {
 				this.props.resetError();
 			};
 		});
-
-		const initialAuth = async () => {
-			await express.post("/refresh");
-			const response = await express.get("/access");
-			
-			if(response.data) {
-				this.props.login(response.data._id, "initial");
-			} else {
-				this.props.logout("initial");
-			};
-		};
-
-		initialAuth();
 	};
 
 	renderError() {

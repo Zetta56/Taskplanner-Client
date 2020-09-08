@@ -1,18 +1,33 @@
 /* Note: Has unique file name due to usage in multiple components */
-#userForm {
-	margin: 70px auto;
+.userForm {
+	margin: 70px auto !important;
 }
 
-#userForm .eight.wide.column {
+.userForm .eight.wide.column {
 	margin: 0 auto;
 	padding: 30px 16px;
 }
 
+.eight.wide.column .googleLogin,
 .eight.wide.column .field,
-.eight.wide.column .ui.blue.button {
+.eight.wide.column .ui.button {
 	font-size: 16px;
-	margin: 15px 5%;
+	margin: 9px 5%;
 	width: 90%;
+}
+
+.eight.wide.column .googleLogin {
+	background: white url("/google-normal.png") no-repeat center;
+	border-radius: .28571429rem;
+	height: 45px;
+}
+
+.eight.wide.column .googleLogin:hover {
+	background: #eeeeee url("/google-hover.png") no-repeat center;
+}
+
+.ui.red.label {
+	margin: 5px 0 0 5%;
 }
 
 .registerMessage {
