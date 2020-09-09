@@ -14,16 +14,10 @@ class StepItem extends React.Component {
 					<p>A simple task organizer for your everyday responsibilities</p>
 				</div>
 				<div className="ui inverted segment">
-					<div className="ui two column very relaxed stackable grid">
-				    	<div className="middle aligned column">
 				      		<span className="login"><Login /></span>
-				    	</div>
 				    	<div className="ui inverted horizontal divider">Or</div>
 				    	<div className="ui inverted vertical divider">Or</div>
-					    <div className="middle aligned column">
 					      	<span className="register"><Register /></span>
-					    </div>
-					</div>
 				</div>
 			</div>
 		);

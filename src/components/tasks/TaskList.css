@@ -167,6 +167,15 @@
 		justify-content: center;
 	}
 	
+	.listButtons .ui.button,
+	.listButtons .ui.simple.dropdown {
+		padding: 11px 5px;
+	}
+
+	.plus.icon {
+		margin-right: 1px !important;
+	}
+
 	.title .checkbox {
 		left: 5%;
 	}

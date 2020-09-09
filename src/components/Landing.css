@@ -22,18 +22,34 @@
 }
 
 /*Responsive Styles*/
+@media only screen and (min-width: 993px) {
+	#landing .ui.inverted.segment {
+		display: flex;
+		align-items: center;
+	}
+
+	#landing .horizontal.divider {
+		display: none;
+	}
+
+	.login {
+		display: inline-block;
+		width: 45%;
+	}
+
+	.register {
+		display: inline-block;
+		width: 45%;
+		margin-left: 10%;
+	}
+}
+
 @media only screen and (max-width: 992px) {
 	#landing .middle.aligned.column {
 		width: 100%;
 	}
 
 	#landing .vertical.divider {
-		display: none;
-	}
-}
-
-@media only screen and (min-width: 993px) {
-	#landing .horizontal.divider {
 		display: none;
 	}
 }
