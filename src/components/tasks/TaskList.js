@@ -44,7 +44,7 @@ class TaskList extends React.Component {
 	renderDeleteButton = () => {
 		//Checks if there are any checked off tasks
 		if(this.props.tasks.filter(task => task.done === true).length !== 0) {
-			return <Link to="/tasks/completed/delete" className="ui red button">Delete Completed</Link>
+			return <Link to="/tasks/completed/delete" className="ui red button"><i className="trash alternate icon" /></Link>
 		};
 	};
 
