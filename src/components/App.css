@@ -163,12 +163,12 @@ body,
 }
 
 .dateDetails .soon,
-.ui.edit.button {
+.ui.yellow.button:not(:hover) {
 	background-color: #f0a400;	/*yellow*/
 }
 
 .dateDetails .later,
-.editting .ui.edit.button {
+.ui.green.button:not(:hover) {
 	background-color: #55b83e;	/*green*/
 }
 
@@ -193,12 +193,4 @@ a {
 
 .icon:not(.plus) {
 	margin: 0 !important;
-}
-
-.ui.yellow.button:not(:hover) {
-	background-color: #fbbd08 !important;
-}
-
-.ui.green.button:not(:hover) {
-	background-color: #21ba45 !important;
 }

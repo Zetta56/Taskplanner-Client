@@ -41,7 +41,8 @@ class TaskItem extends React.Component {
 		const task = this.props.task,
 			  active = this.props.selected.includes(this.props.index) ? "active" : "",
 			  editting = task.editDisabled ? "" : "editting",
-			  editIcon = task.editDisabled ? "edit" : "check",
+			  buttonColor = task.editDisabled ? "yellow" : "green",
+			  buttonIcon = task.editDisabled ? "edit" : "check",
 			  done = task.done ? "done" : "";
 
 		return (
@@ -54,7 +55,9 @@ class TaskItem extends React.Component {
 						<div className="date">{this.renderDate(task)}</div>
 						<div className="icons">
 							<button className="ui red button"><Link to={`/tasks/${task._id}/delete`}><i className="trash icon" /></Link></button>
-							<button className="ui edit button" onClick={() => this.onEditSubmit()}><i className={`${editIcon} icon`} /></button>
+							<button className={`ui ${buttonColor} button`} onClick={() => this.onEditSubmit()}>
+								<i className={`${buttonIcon} icon`} />
+							</button>
 						</div>
 					</span>
 				</div>
