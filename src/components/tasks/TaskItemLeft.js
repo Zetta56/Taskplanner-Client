@@ -24,13 +24,18 @@ class TaskItemLeft extends React.Component {
 
 	renderTaskTitle = ({editDisabled, title, _id}) => {
 		if(editDisabled) {
-			return <Link to={`/tasks/${_id}`} onClick={(e) => e.stopPropagation()}>{title}</Link>
+			return (
+				<Link to={`/tasks/${_id}`} onClick={(e) => e.stopPropagation()}>
+					<CustomEditable text={title} editDisabled={true} />
+				</Link>
+			);
 		} else {
 			return <CustomEditable
-						text={title || "New Task"}
+						text={title}
+						defaultText="New Task"
 						editDisabled={editDisabled}
-						onEditableSubmit={(text, type) => this.props.updateTask({[type]: text}, this.props.task._id)}
-						type="title" />
+						onEditableSubmit={(text) => this.props.updateTask({title: text}, this.props.task._id)}
+						singleLine={true} />
 		};
 	};
 	render() {

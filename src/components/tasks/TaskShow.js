@@ -3,6 +3,7 @@ import Reorder from "react-reorder";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchTask, reorderSteps, fetchSteps, createStep} from "../../actions";
+import CustomEditable from "../CustomEditable";
 import StepItem from "../steps/StepItem";
 import "./TaskShow.css";
 
@@ -44,8 +45,8 @@ class TaskShow extends React.Component {
 		return (
 			<div id="taskShow">
 				<div className="info">
-					<h1 className="title">{this.props.task.title}</h1>
-					<div className="description">{this.props.task.description}</div>
+					<CustomEditable className="title" text={this.props.task.title} editDisabled={true} />
+					<CustomEditable className="description" text={this.props.task.description} editDisabled={true} />
 				</div>
 				<div className="steps">
 					<button className="ui large blue button" onClick={() => this.props.createStep({content: "New Step"}, this.props.task._id)}>

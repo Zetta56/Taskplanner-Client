@@ -63,10 +63,10 @@ class TaskItem extends React.Component {
 				</div>
 				<div className={`content ${active} ${editting} ${done}`}>
 					<CustomEditable
-						text={task.description || "Enter a description here..."}
+						text={task.description}
+						defaultText="Enter a description here..."
 						editDisabled={task.editDisabled}
-						onEditableSubmit={(text, type) => this.props.updateTask({[type]: text}, this.props.task._id)}
-						type="description" />
+						onEditableSubmit={(text) => this.props.updateTask({description: text}, this.props.task._id)} />
 				</div>
 			</React.Fragment>
 		);

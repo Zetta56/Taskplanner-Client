@@ -50,6 +50,7 @@
 div[contenteditable="true"],
 #header .item {
 	outline: 0;
+	white-space: pre-wrap;
 }
 
 .title .date,

@@ -4,7 +4,7 @@ import sanitize from "sanitize-html-react";
 
 class CustomEditable extends React.Component {
 	onEditableClick = (e) => {
-		if(!this.props.editDisabled) {
+		if(this.props.text === this.props.defaultText && !this.props.editDisabled) {
 			//Creates new set of document nodes
 			const range = document.createRange();
 			//Sets range to be at event target's text
@@ -16,8 +16,8 @@ class CustomEditable extends React.Component {
 
 	onEditableKeydown = (e) => {
 		//Submits when enter key pressed
-		if(e.which === 13) {
-			this.props.onEditableSubmit(sanitize(e.target.textContent), this.props.type);
+		if(this.props.singleLine && e.which === 13) {
+			e.preventDefault();
 		};
 	};
 
@@ -25,10 +25,11 @@ class CustomEditable extends React.Component {
 		return (
 			<ContentEditable
 				html={this.props.text}
+				className={this.props.className}
 				disabled={this.props.editDisabled}
 				onKeyDown={(e) => this.onEditableKeydown(e)}
 				onClick={(e) => this.onEditableClick(e)}
-				onBlur={(e) => this.props.onEditableSubmit(sanitize(e.target.textContent), this.props.type)} />
+				onBlur={(e) => this.props.onEditableSubmit(sanitize(e.target.innerHTML.replace(/^<br>/g, "")) || this.props.defaultText)} />
 		);
 	};
 };
