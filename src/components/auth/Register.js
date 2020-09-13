@@ -65,7 +65,7 @@ const validate = ({email, username, password, confirmPassword}) => {
 	};
 	
 	if(!username) {
-		err.username = "You must enter an username";
+		err.username = "You must enter a username";
 	};
 	
 	if(!passRegex.test(password)) {
@@ -73,7 +73,7 @@ const validate = ({email, username, password, confirmPassword}) => {
 	};
 	
 	if(!password) {
-		err.password = "You must enter an password";
+		err.password = "You must enter a password";
 	};
 	
 	if(password !== confirmPassword) {
