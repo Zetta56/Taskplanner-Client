@@ -33,10 +33,10 @@ export const fetchSteps = (taskId) => {
 	};
 };
 
-export const createStep = (formValues, taskId) => {
+export const createStep = (taskId) => {
 	return async (dispatch) => {
 		try {
-			const response = await express.post(`/tasks/${taskId}/steps`, {...formValues});
+			const response = await express.post(`/tasks/${taskId}/steps`);
 
 			dispatch({
 				type: "CREATE_STEP",

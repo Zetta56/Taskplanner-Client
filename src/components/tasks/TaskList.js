@@ -11,11 +11,7 @@ class TaskList extends React.Component {
 	};
 
 	onCreateClick = () => {
-		this.props.createTask({
-			title: "New Task",
-			description: "Enter a description here...",
-			date: Date.now()
-		});
+		this.props.createTask();
 	};
 
 	onDropdownClick = (filter, index) => {

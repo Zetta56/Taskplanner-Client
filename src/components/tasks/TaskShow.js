@@ -49,7 +49,7 @@ class TaskShow extends React.Component {
 					<CustomEditable className="description" text={this.props.task.description} editDisabled={true} />
 				</div>
 				<div className="steps">
-					<button className="ui large blue button" onClick={() => this.props.createStep({content: "New Step"}, this.props.task._id)}>
+					<button className="ui large blue button" onClick={() => this.props.createStep(this.props.task._id)}>
 						Add New Step
 					</button>
 					{this.renderReset()}

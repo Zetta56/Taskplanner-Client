@@ -18,10 +18,10 @@ export const fetchTasks = (filter) => {
 	};
 };
 
-export const createTask = (formValues) => {
+export const createTask = () => {
 	return async (dispatch) => {
 		try {
-			const response = await express.post("/tasks", {...formValues});
+			const response = await express.post("/tasks");
 
 			dispatch({
 				type: "CREATE_TASK",
