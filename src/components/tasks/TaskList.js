@@ -19,22 +19,22 @@ class TaskList extends React.Component {
 		this.props.fetchTasks(filter);
 	};
 
-	renderListItem = () => {
+	renderList = () => {
 		return this.props.tasks.map((task, index) => {
 			return <TaskItem task={task} index={index} key={task._id} />
 		});
+	};
+
+	renderAccordion = () => {
+		if(this.props.tasks && this.props.tasks.length !== 0) {
+			return <div className="ui styled accordion">{this.renderList()}</div>
+		};
 	};
 
 	renderDropdownItem = (filters) => {
 		return filters.map((filter, index) => {
 			return <div className="item" onClick={() => this.onDropdownClick(filter, index)} key={filter}>{filter}</div>
 		});
-	};
-
-	renderLists = () => {
-		if(this.props.tasks && this.props.tasks.length !== 0) {
-			return <div className="ui styled accordion">{this.renderListItem()}</div>
-		};
 	};
 
 	renderDeleteButton = () => {
@@ -63,7 +63,7 @@ class TaskList extends React.Component {
 					</div>
 					{this.renderDeleteButton()}
 				</div>
-				{this.renderLists()}
+				{this.renderAccordion()}
 			</div>
 		);
 	};

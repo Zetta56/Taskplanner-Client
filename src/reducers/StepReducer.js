@@ -1,7 +1,7 @@
 export default (state = [], action) => {
 	switch(action.type) {
 		case "FETCH_STEPS":
-			return [...state.filter(step => step._id === action.payload._id), ...action.payload];
+			return [...state.filter(step => step._id === null), ...action.payload];
 		case "CREATE_STEP":
 			return [...state, action.payload]
 		case "UPDATE_STEP":
@@ -9,7 +9,7 @@ export default (state = [], action) => {
 		case "DELETE_STEP":
 			return [...state.filter(step => step._id !== action.payload)];
 		case "DELETE_STEPS":
-			return [...state.filter(step => step._id !== null)];
+			return [...state.filter(step => step._id === null)];
 		default:
 			return state;
 	};
