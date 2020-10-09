@@ -7,7 +7,7 @@ You must have npm installed for this app to work properly. This also requires [T
 ## Usage
 1. Create a `.env` file at the root directory and add the following environment variable:
 
-       process.env.REACT_APP_BACKEND_URL=YOUR_SERVER
+       REACT_APP_BACKEND_URL=YOUR_SERVER
        
    Make sure to replace YOUR_SERVER with the deployment URL for your [Taskplanner-server](https://github.com/Zetta56/Taskplanner-server).
    
@@ -34,6 +34,6 @@ OPTIONAL: You can enable Google OAuth2 with the following:
 
 6. You should see your client id. If you do, add the following to your project's environment variables and replace YOUR_CLIENT_ID with your client id:
 
-       process.env.REACT_APP_GOOGLE_CLIENTID=YOUR_CLIENT_ID
+       REACT_APP_GOOGLE_CLIENTID=YOUR_CLIENT_ID
       
    Note: You should also enable Google OAuth2 in your [Taskplanner-server](https://github.com/Zetta56/Taskplanner-server).
