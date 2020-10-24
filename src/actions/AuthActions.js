@@ -9,7 +9,7 @@ export const createUser = (formValues) => {
 			dispatch(login({username: formValues.username, password: formValues.password}));
 		} catch(err) {
 			await history.push("/register");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -36,7 +36,7 @@ export const login = (formValues) => {
 			history.push("/tasks");
 		} catch(err) {
 			await history.push("/login");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };

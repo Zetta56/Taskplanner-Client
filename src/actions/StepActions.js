@@ -12,7 +12,7 @@ export const reorderSteps = (steps, previousIndex, nextIndex, taskId) => {
 			dispatch(fetchSteps(taskId));
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -28,7 +28,7 @@ export const fetchSteps = (taskId) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -44,7 +44,7 @@ export const createStep = (taskId) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -60,7 +60,7 @@ export const updateStep = (formValues, stepId, taskId) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -76,7 +76,7 @@ export const deleteStep = (stepId, taskId) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -94,7 +94,7 @@ export const deleteSteps = (taskId) => {
 			history.push(`/tasks/${taskId}`)
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };

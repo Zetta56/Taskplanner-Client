@@ -13,7 +13,7 @@ export const fetchTasks = (filter) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect);
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -29,7 +29,7 @@ export const createTask = () => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -45,7 +45,7 @@ export const fetchTask = (taskId) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -61,7 +61,7 @@ export const updateTask = (formValues, taskId) => {
 			});
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -79,7 +79,7 @@ export const deleteTask = (taskId) => {
 			history.push("/tasks");
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -97,7 +97,7 @@ export const deleteCompletedTasks = () => {
 			history.push("/tasks");
 		} catch(err) {
 			await history.push(err.response.data.redirect || "/tasks");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
