@@ -54,7 +54,9 @@ class TaskItem extends React.Component {
 					<span className="taskItemRight" onClick={(e) => e.stopPropagation()}>
 						<div className="date">{this.renderDate(task)}</div>
 						<div className="icons">
-							<button className="ui red button"><Link to={`/tasks/${task._id}/delete`}><i className="trash icon" /></Link></button>
+							<button className="ui red button">
+								<Link to={`/tasks/${task._id}/delete`}><i className="trash icon" /></Link>
+							</button>
 							<button className={`ui ${buttonColor} button`} onClick={() => this.onEditSubmit()}>
 								<i className={`${buttonIcon} icon`} />
 							</button>

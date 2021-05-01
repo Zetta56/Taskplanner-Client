@@ -1,6 +1,10 @@
 # Taskplanner
 A highly interactive web app that lets users manage and organize their everyday tasks. This repository contains the front-end portion of the project, created with React and Redux.
 
+![Home Page](/docs/images/home.PNG)
+
+<img src="/docs/images/home.PNG" width="100%" height="300" />
+
 ## Requirements
 You must have npm installed for this app to work properly. This also requires [Taskplanner-server](https://github.com/Zetta56/Taskplanner-server) to be deployed to a cloud platform like [Heroku](https://www.heroku.com/). Deployment instructions for Heroku can be found [here](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
 
