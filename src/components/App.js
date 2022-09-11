@@ -18,12 +18,9 @@ import "./App.css";
 
 class App extends React.Component {
 	componentDidMount() {
-		window.refreshCooldown = false;
-		window.setInterval(() => window.refreshCooldown = false, 180000);
-
 		const loadAuth = async () => {
 			await express.post("/refresh");
-			const response = await express.get("/access");
+			const response = await express.get("/user");
 			
 			if(response.data) {
 				this.props.login(response.data._id);
@@ -34,7 +31,7 @@ class App extends React.Component {
 			};
 		};
 		
-		//Loads auth2 client and checks login status
+		// Checks login status with either OAuth2 or local strategy
 		if(process.env.REACT_APP_GOOGLE_CLIENTID) {
 			window.gapi.load("client:auth2", () => {
 				window.gapi.client.init({
